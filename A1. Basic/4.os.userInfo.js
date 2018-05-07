@@ -6,7 +6,7 @@ var user = os.userInfo();
 console.log(user);
 
 try {
-  fs.appendFileSync('message.txt', 'data to append synchronous' + user.username + '!');
+  fs.appendFileSync('message.txt', 'data to append synchronous' + user.username + '!'); //'Hello ${user.username}!' use template string
   console.log('The "data to append" was appended to file!');
 } catch (err) {
   console.log(err);

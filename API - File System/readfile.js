@@ -1,6 +1,7 @@
 const fs = require('fs');
 
-fs.readFile('test.txt', (err, data) => {
+//Asynchronously reads the entire contents of a file. Example:
+fs.readFile('test.txt', 'utf8', (err, data) => {
   if (err) throw err;
   console.log(data);
 });

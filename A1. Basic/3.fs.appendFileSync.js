@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 /*
-Asynchronously append data to a file, creating the file if it does not yet exist.
+Synchronously append data to a file, creating the file if it does not yet exist. 
 Data can be a string or a Buffer.
 
 fs.appendFile(file, data[, options], callback)*/

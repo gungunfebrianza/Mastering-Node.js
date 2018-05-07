@@ -7,6 +7,9 @@ Data can be a string or a Buffer.
 fs.appendFile(file, data[, options], callback)*/
 fs.appendFile('message.txt', 'data to append', 'utf8', (err) => {
   if (err) throw err;
+/*  if (err) {
+    console.log('Unable to write to file');
+  }*/
   console.log('The "data to append" was appended to file!');
 });
 

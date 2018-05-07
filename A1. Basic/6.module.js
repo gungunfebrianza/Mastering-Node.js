@@ -15,3 +15,5 @@ try {
 
 var res = notes.addNote();
 console.log(res);
+
+console.log('Result:', notes.add(9, -2));

@@ -12,3 +12,6 @@ try {
 } catch (err) {
   console.log(err);
 }
+
+var res = notes.addNote();
+console.log(res);

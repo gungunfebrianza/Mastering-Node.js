@@ -1,0 +1,9 @@
+solid BOLLEN
+  facet normal  1 .5 .25
+   outer loop
+    vertex  10  10  10
+    vertex  4  4  4
+    vertex  5  5  5
+   endloop
+  endfacet
+endsolid

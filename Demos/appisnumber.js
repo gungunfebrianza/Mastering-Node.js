@@ -21,3 +21,14 @@ isNumber('100');             // true
 isNumber('5e3');             // true
 isNumber(parseInt('012'));   // true
 console.log(isNumber(parseFloat('012'))); // true
+
+isNumber('foo');             // false
+isNumber([1]);               // false
+isNumber([]);                // false
+isNumber(function () {});    // false
+isNumber(Infinity);          // false
+isNumber(NaN);               // false
+isNumber(new Buffer('abc')); // false
+isNumber(null);              // false
+isNumber(undefined);         // false
+isNumber({abc: 'abc'});      // false

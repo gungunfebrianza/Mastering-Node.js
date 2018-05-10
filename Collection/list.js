@@ -1,5 +1,8 @@
 var List = require("collections/list");
 
+/*An ordered list of values.
+A List is backed by a doubly linked list with a head node.*/
+
 var list = new List([1, 2, 3]);
 
 //length properties

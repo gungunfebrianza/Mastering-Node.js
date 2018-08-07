@@ -12,3 +12,8 @@ server.on("request", (request, socket) => {
 });
 
 server.listen(8080, () => console.log('Proxy server listening on localhost:8080'));
+
+/*
+Because Node has a consistent streams interface throughout its network
+interfaces, we can build a simple HTTP proxy in just a few lines of code. 
+*/

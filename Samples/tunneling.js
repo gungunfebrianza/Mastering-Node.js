@@ -31,3 +31,12 @@ request.on('connect', (res, socket, head) => {
 		proxy.close();
 	});
 });
+
+/*
+create a tunneling service, using Node's native CONNECT support.
+Tunneling involves using a proxy server as an intermediary to communicate
+with a remote server on behalf of a client. Once our proxy server connects to
+a remote server, it is able to pass messages back and forth between that server
+and a client. This is advantageous when a direct connection between a client
+and a remote server is not possible, or not desired.
+*/

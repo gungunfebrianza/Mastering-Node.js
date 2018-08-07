@@ -1,4 +1,15 @@
-setInterval(() => { // arrow function to the rescue!
-  console.log(this);
-  console.log(this.count++);
-}, 1000);
+function Counter() {
+
+  this.count = 0;
+
+  setInterval(() => {
+
+    console.log(this)
+
+    console.log(this.count++);
+
+  }, 1000);
+
+}
+
+new Counter();

@@ -1,3 +1,7 @@
+/*https://nodejs.org/api/https.html
+HTTPS is the HTTP protocol over TLS/SSL.
+In Node.js this is implemented as a separate module.
+*/
 const https = require('https');
 const fs = require('fs');
 

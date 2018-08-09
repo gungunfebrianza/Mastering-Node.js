@@ -15,8 +15,8 @@ app.use('/first', miniapp)
 app.use('/second', miniapp)
 
 app.listen(
-	1000,
-	() => console.log('Web Server running on port 1000'),
+	9999,
+	() => console.log('Web Server running on port 9999'),
 )
 
 // http://localhost:1337/first/home

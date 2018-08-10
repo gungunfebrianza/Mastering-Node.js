@@ -1,13 +1,13 @@
-const express = require('express')
-const helmet = require('helmet')
-const bodyParser = require('body-parser')
-const uuid = require('uuid/v1')
-const app = express()
+const express = require('express');
+const helmet = require('helmet');
+const bodyParser = require('body-parser');
+const uuid = require('uuid/v1');
+const app = express();
 
 /*Generate a random ID which will be used for nonce which is an HTML attribute
 used for whitelist which scripts or styles are allowed to be executed inline
 in the HTML code:*/
-const suid = uuid()
+const suid = uuid();
 
 /*Use body parser to parse JSON request body for json and application/csp-report
 content types. application/csp-report is a content type that contains a JSON
@@ -15,7 +15,7 @@ request body of type json which is sent by the browser when one or several CSP
 rules are violated:*/
 app.use(bodyParser.json({
   type: ['json', 'application/csp-report']
-}))
+}));
 
 /*Use the Content Security Policy middleware function to define directives.
 defaultSrc specifies where resources can be loaded from. The self option
@@ -33,7 +33,7 @@ app.use(helmet.contentSecurityPolicy({
     scriptSrc: [`'nonce-${suid}'`],
     reportUri: '/csp-violation'
   }
-}))
+}));
 
 // Add a route method to handle POST request for path "/csp-violation" to receive
 // violation reports from the client:
@@ -64,7 +64,7 @@ app.use(helmet.referrerPolicy({policy: 'same-origin'}))
 // Prevent Reflected XSS attacks
 app.use(helmet.xssFilter())
 
-/*Add a route method to handle GET requests on path "/" and serve a sample HTML 
+/*Add a route method to handle GET requests on path "/" and serve a sample HTML
 content that will try to load an image from an external source, try to execute
 an inline script, and try to load an external script without a nonce specified.
 We will add a valid script as well that is allowed to be executed because a

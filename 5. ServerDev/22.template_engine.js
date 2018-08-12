@@ -29,7 +29,7 @@ app.set('views', './views')
 // Tell ExpressJS to use our template engine:
 app.set('view engine', 'tpl')
 
-/*Add a route method to handle GET requests for path "/" and render our home 
+/*Add a route method to handle GET requests for path "/" and render our home
 template. Provide the title and description options which will replace %title%
 and %description% in our template:*/
 app.get('/', (request, response, next) => {
@@ -40,3 +40,8 @@ app.get('/', (request, response, next) => {
 })
 
 app.listen(9999, () => console.log('Web Server running on port 9999'),)
+
+// The template engine we just have wrote doesn't escape HTML characters. 
+// That means, you should be careful if replacing those properties with data
+// gotten from the client because it may be vulnerable to XSS attacks. You may
+// want to use a template engine from the official ExpressJS website that is safer.

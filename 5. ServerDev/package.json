@@ -12,6 +12,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
+    "debug": "^3.1.0",
     "express": "^4.16.3",
     "helmet": "^3.13.0",
     "morgan": "^1.9.0",

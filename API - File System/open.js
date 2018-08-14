@@ -6,6 +6,7 @@ const fs = require('fs');
     Returns true if the path exists, false otherwise.
 */
 
+//Asynchronous file open.
 fs.open('example.file', 'wx', (err, fd) => {
   if (err) {
     if (err.code === 'EEXIST') {

@@ -1,17 +1,34 @@
 const fs = require('fs');
 
-/*
-The fs module provides an API for interacting with the file system in a manner
-closely modeled around standard POSIX functions.
-All file system operations have synchronous and asynchronous forms.
+/*syntax
+fs.appendFile(path, data[, options], callback)
+#
+History
 
-The asynchronous form always takes a completion callback as its last argument.
-The arguments passed to the completion callback depend on the method,
-but the first argument is always reserved for an exception.
-If the operation was completed successfully,
-then the first argument will be null or undefined.
+    path <string> | <Buffer> | <URL> | <number> filename or file descriptor
+    data <string> | <Buffer>
+
+    options <Object> | <string>
+        encoding <string> | <null> Default: 'utf8'
+        mode <integer> Default: 0o666
+        flag <string> See support of file system flags. Default: 'a'.
+
+    callback <Function>
+        err <Error>
 */
 
+/*Definition
+Asynchronously append data to a file, creating the file if it does not yet
+exist. data can be a string or a Buffer.*/
+fs.appendFile('message.txt', ' data to append', 'utf8', (err) => {
+  if (err)
+    throw err;
+
+  /*  if (err) {
+    console.log('Unable to write to file');
+  }*/
+  console.log('The "data to append" was appended to file!');
+});
 
 /*Filesystem Flag
     'a' - Open file for appending. The file is created if it does not exist.

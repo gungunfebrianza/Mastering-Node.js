@@ -1,5 +1,20 @@
 const fs = require('fs');
 
+/*Syntax
+fs.readdir(path[, options], callback)
+#
+History
+
+    path <string> | <Buffer> | <URL>
+
+    options <string> | <Object>
+        encoding <string> Default: 'utf8'
+
+    callback <Function>
+        err <Error>
+        files <string[]> | <Buffer[]>
+*/
+
 /*Definition
 Reads the contents of a directory.
 The callback gets two arguments (err, files) where files is

@@ -1,9 +1,14 @@
 const fs = require('fs');
 
-/*
+/*Syntax :
+fs.open(path, flags[, mode], callback)
     path <string> | <Buffer> | <URL>
-    Returns: <boolean>
-    Returns true if the path exists, false otherwise.
+    flags <string> | <number> See support of file system flags.
+    mode <integer> Default: 0o666 (readable and writable)
+
+    callback <Function>
+        err <Error>
+        fd <integer>
 */
 
 //Asynchronous file open.

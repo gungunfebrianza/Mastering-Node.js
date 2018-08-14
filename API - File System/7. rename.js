@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-fs.rename('A', 'B', (err) => {
+fs.rename('message.txt', 'newFile.txt', (err) => {
   if (err) throw err;
-  console.log('renamed complete');
+  console.log('Rename complete!');
 });
 
-fs.stat('B', (err, stats) => {
+fs.stat('message.txt', (err, stats) => {
   if (err) throw err;
   console.log(`stats: ${JSON.stringify(stats)}`);
 });

@@ -1,13 +1,13 @@
-const express = require('express');
+var express = require('express')
+var app = express()
 
-let app = express();
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})
 
+app.listen(9999)
 
-app.listen(9999);
-
-console.log(`It's working`);
-
-// ExpressJS does the whole job of understanding a client's request. 
+// ExpressJS does the whole job of understanding a client's request.
 // The request may come from a browser, for instance. Once the request has been
 // interpreted, ExpressJS saves all the information in two objects:
 //

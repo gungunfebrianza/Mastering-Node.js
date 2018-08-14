@@ -1,7 +1,7 @@
 const path = require('path');
 
 /*
-
+The path.format() method returns a path string from an object. This is the opposite of path.parse().
 
     pathObject <Object>
         dir <string>

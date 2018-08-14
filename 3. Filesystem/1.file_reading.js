@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-fs.readdir('./', (err, content) => {
+fs.readdir('./', 'UTF-8', (err, content) => {
   if (err)
     return err;
   console.log(content);

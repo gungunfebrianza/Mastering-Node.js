@@ -1,11 +1,12 @@
 const path = require('path');
 
 /*
-The path.normalize() method normalizes the given path, resolving '..' and
-'.' segments.
+The path.parse() method returns an object whose properties represent
+significant elements of the path.
 
     path <string>
-    Returns: <string>
+    Returns: <Object>
+
 
 */
 console.log(path.parse('C:\\path\\dir\\file.txt'));

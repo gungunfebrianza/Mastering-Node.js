@@ -12,8 +12,19 @@ Sets cookie name to value. The value parameter may be a string or object convert
 The options parameter is an object that can have the following properties.
 */
 app.get('/', (req, res) => {
-  res.cookie('name', 'tobi', { domain: '.example.com', path: '/admin', secure: true });
-  res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
+  res.cookie('name', 'tobi', {
+    domain: '.example.com',
+    path: '/admin',
+    secure: true
+  });
+  res.cookie('rememberme', '1', {
+    expires: new Date(Date.now() + 900000),
+    httpOnly: true
+  });
+  /*The maxAge option is a convenience option for setting “expires” relative to
+  the current time in milliseconds. The following is equivalent to the second
+  example above.*/
+  res.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true });
 })
 
 

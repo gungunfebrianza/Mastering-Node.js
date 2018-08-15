@@ -34,6 +34,23 @@ app.get('/', (req, res) => {
   res.redirect('post/new');
 })
 
+/*
+Redirecting to post/new from http://example.com/blog/admin (no trailing slash),
+will redirect to http://example.com/blog/post/new.
+
+If you found the above behavior confusing, think of path segments as
+directories (with trailing slashes) and files, it will start to make sense.
+
+Path-relative redirects are also possible.
+If you were on http://example.com/admin/post/new,
+the following would redirect to http://example.com/admin/post:
+res.redirect('..');
+
+A back redirection redirects the request back to the referer,
+defaulting to / when the referer is missing.
+res.redirect('back');
+*/
+
 /*Status Code:
 https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 */

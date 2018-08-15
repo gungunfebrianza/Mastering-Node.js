@@ -8,10 +8,9 @@ res.format(object)
 */
 
 /*Definition
-
+Returns the HTTP response header specified by field. The match is case-insensitive.
 */
 app.get('/', (req, res) => {
-	//Returns the HTTP response header specified by field. The match is case-insensitive.
 	res.get('Content-Type');
 	// => "text/plain"
 })

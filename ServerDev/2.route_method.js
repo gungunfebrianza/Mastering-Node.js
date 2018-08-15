@@ -11,6 +11,20 @@ app.get('/', (req, res)=>{
   res.send('<h1>Hello World!</h1>');
 });
 
+app.post('/', function (req, res) {
+  res.send('Got a POST request')
+})
+
+//example - Respond to a PUT request to the /user route:
+app.put('/user', function (req, res) {
+  res.send('Got a PUT request at /user')
+})
+
+//example - Respond to a DELETE request to the /user route:
+app.delete('/user', function (req, res) {
+  res.send('Got a DELETE request at /user')
+})
+
 app.get('/api', (req, res)=>{
   //res.send('<h1>API Page</h1>');
   res.json({name:'wildan'});

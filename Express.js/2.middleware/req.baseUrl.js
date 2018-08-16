@@ -2,17 +2,14 @@ const express = require('express')
 const app = express()
 
 /*Syntax
-req.originalUrl
+req.baseUrl
 */
 
 /*Definition
-In a middleware function, req.originalUrl is a combination of req.baseUrl
-and req.path, as shown in the following example.
-
-This property is much like req.url; however,
-it retains the original request URL, allowing you to rewrite req.url freely
-for internal routing purposes. For example, the “mounting” feature of app.use()
-will rewrite req.url to strip the mount point.
+The URL path on which a router instance was mounted.
+The req.baseUrl property is similar to the mountpath property of the app object,
+except app.mountpath returns the matched path pattern(s).
+For example:
 */
 
 /*Example

@@ -26,8 +26,13 @@ app.delete('/user', function (req, res) {
 })
 
 app.get('/api', (req, res)=>{
-  //res.send('<h1>API Page</h1>');
-  res.json({name:'wildan'});
+  res.send({
+    name: 'Wildan',
+    likes: [
+      'Toad',
+      'Thanos'
+    ]
+  });
 });
 
 app.listen(port);

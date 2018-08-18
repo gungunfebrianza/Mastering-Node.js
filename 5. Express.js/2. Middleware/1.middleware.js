@@ -1,8 +1,15 @@
-var express = require('express')
-var app = express()
+const express = require('express')
+const app = express()
+const fs = require('fs');
 
 var myLogger = function (req, res, next) {
-  console.log('LOGGED')
+  var now = new Date().toString();
+  var log = `${now}: ${req.method} ${req.url}`;
+  fs.appendFile('server.log', log + '\n', (err) => {
+    if (err) {
+      console.log('Unable to append to server.log.')
+    }
+  });
   next()
 }
 

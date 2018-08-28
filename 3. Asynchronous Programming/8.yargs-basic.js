@@ -12,4 +12,5 @@ const argv = yargs
   .help()
   .alias('help', 'h')
   .argv;
-console.log(argv);
+var encodedAddress = encodeURIComponent(argv.address);
+console.log(argv.address);

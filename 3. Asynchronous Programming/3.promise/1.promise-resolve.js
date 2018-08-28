@@ -1,7 +1,7 @@
 // We'll use the new keyword to create a new instance of a promise.
 var somePromise = new Promise((resolve, reject) => {
   setTimeout(() => {
-    // resolve('Hey. It worked!');
+    resolve('Hey. It worked!');
  }, 2500);
 
 });

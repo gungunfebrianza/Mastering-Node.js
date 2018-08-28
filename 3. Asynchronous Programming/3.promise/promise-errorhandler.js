@@ -7,5 +7,7 @@ var somePromise = new Promise((resolve, reject) => {
 });
 
 somePromise.then((message) => {
-  console.log('\n Success: ', message);
-})
+  console.log('Success: ', message);
+}, (errorMessage) => {
+  console.log('Error: ', errorMessage);
+});

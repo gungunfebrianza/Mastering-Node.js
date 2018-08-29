@@ -22,7 +22,6 @@ axios.get(geocodeUrl).then((response) => {
   if(response.data.status === 'ZERO_RESULTS'){
     throw new Error('Unable to find that address.');
   }
-
   var lat = response.data.results[0].geometry.location.lat;
   var lng = response.data.results[0].geometry.location.lng;
   var weatherUrl =`https://api.forecast.io/forecast/9d012cdd7280d53ddadf7ceb769d89fa/${lat},${lng}`;

@@ -1,5 +1,5 @@
 const express = require('express')
-var birds = require('./8.module_bird')
+var birds = require('./8.module-bird')
 
 const app = express()
 

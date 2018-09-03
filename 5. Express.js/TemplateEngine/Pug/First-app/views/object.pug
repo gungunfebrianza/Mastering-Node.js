@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title render object
+  body
+    p render success
+    p hello there, #{name}!
+    ul
+      each val, index in objuser
+        li= index + ': ' + val

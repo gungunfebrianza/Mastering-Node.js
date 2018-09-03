@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700,900");
+@media screen {
+  *, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; } }
+
+* {
+  margin: auto;
+  padding: auto; }
+
+html {
+  font-size: 62.5%; }
+
+/*base sizee*/
+body {
+  font-size: 1.4rem;
+  font-family: 'Roboto', sans-serif; }
+
+/* =14px all type sizes are relative to the base size*/
+.profile {
+  width: 100%;
+  height: 35vh;
+  //background: #E54C20 url("https://upload.wikimedia.org/wikipedia/commons/e/ea/Chaplin_The_Kid_edit.jpg");
+  background-size: cover;
+  background-position: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0; }
+
+.profile.show {
+  z-index: 20;
+  position: relative; }
+
+.information {
+  margin-top: 35vh;
+  padding: 40px 0 220px 30px;
+  z-index: 3;
+  position: relative;
+  background: white; }
+  @media (min-width: 950px) {
+    .information {
+      margin-top: 0;
+      padding: 70px 0 0 30px; } }
+  @media (min-width: 1570px) {
+    .information {
+      padding: 100px 100px 0 100px; } }
+  .information__heading {
+    font-size: 1.3rem;
+    font-weight: 50;
+    color: #BCBCBC; }
+    @media (min-width: 700px) {
+      .information__heading {
+        font-size: 2rem; } }
+    .information__heading__number {
+      font-size: 3rem;
+      color: #E54C20;
+      color: #E54C20;
+      font-weight: 900; }
+      @media (min-width: 700px) {
+        .information__heading__number {
+          font-size: 3.5em; } }
+  .information__name {
+    font-size: 5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #1a1919;
+    line-height: 3.5rem;
+    margin: 20px auto 50px auto; }
+    @media (min-width: 700px) {
+      .information__name {
+        font-size: 6.7rem;
+        line-height: 4rem; } }
+    .information__name small {
+      font-size: 2.5rem;
+      display: block; }
+      @media (min-width: 700px) {
+        .information__name small {
+          font-size: 3.5rem; } }
+  .information__description {
+    color: #BCBCBC;
+    width: 70%;
+    margin: 30px auto auto 55px;
+    font-size: 1.4rem;
+    line-height: 2.5rem; }
+    @media (min-width: 700px) {
+      .information__description {
+        font-size: 1.7rem;
+        line-height: 2.5rem; } }
+
+.breadcrumb {
+  border-top: 3px solid black;
+  position: fixed;
+  background: white;
+  bottom: 0;
+  left: 0;
+  z-index: 6;
+  width: 100%; }
+  .breadcrumb ul {
+    float: right; }
+  .breadcrumb li {
+    list-style: none;
+    display: flex; }
+    .breadcrumb li a {
+      text-decoration: none;
+      padding: 30px 30px 15px 30px;
+      display: block;
+      font-weight: bolder;
+      font-size: 1.6rem;
+      color: #E54C20;
+      border-bottom: 15px solid transparent; }
+      .breadcrumb li a:hover {
+        border-bottom: 15px solid #E54C20; }
+  @media (min-width: 700px) {
+    .breadcrumb {
+      width: 65%; } }
+  .breadcrumb img {
+    display: none; }
+  .breadcrumb__meta {
+    margin-left: 3rem; }
+    .breadcrumb__meta__title {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #1a1919;
+      display: block; }
+    .breadcrumb__meta__tag {
+      color: #E54C20;
+      font-weight: 900; }
+  .breadcrumb__navigator {
+    display: flex;
+    margin-right: 0; }
+    .breadcrumb__navigator a {
+      padding: 55px;
+      display: block;
+      float: left; }
+      .breadcrumb__navigator a:hover {
+        background: #e6e5e5; }
+
+.menu {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  z-index: 3;
+  z-index: 10; }
+  .menu span {
+    padding: 2px 6px;
+    color: white;
+    text-decoration: none;
+    float: left;
+    display: block; }
+  .menu svg {
+    margin: 3px; }
+
+.hide .movies {
+  display: none; }
+
+.movies {
+  height: 100vh;
+  z-index: 7;
+  padding-top: 40px; }
+  .movies:after {
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #1a1919;
+    z-index: -1;
+    top: 0; }
+  .movies article {
+    overflow: auto;
+    margin: 15px auto;
+    display: block;
+    z-index: 13; }
+    @media (max-width: 700px) {
+      .movies article {
+        width: 90%; } }
+    @media (min-width: 700px) {
+      .movies article {
+        width: 50%; } }
+    @media (min-width: 950px) {
+      .movies article {
+        width: 80%; } }
+    @media (min-width: 1570px) {
+      .movies article {
+        width: 50%; } }
+    .movies article h2 {
+      float: left;
+      margin: 45px 20px; }
+  .movies__number {
+    font-size: 6rem;
+    color: #E54C20;
+    font-weight: 900;
+    padding-right: 5px;
+    float: left; }
+  .movies__side {
+    float: left;
+    margin: 13px auto auto 5px; }
+  .movies__title {
+    color: #BCBCBC;
+    font-size: 1.7rem; }
+  .movies__year {
+    display: block;
+    color: #E54C20;
+    font-size: 70%; }
+  .movies img {
+    width: 100px;
+    float: left; }
+
+@media (min-width: 950px) {
+  .wrap {
+    display: flex; } }
+
+.information {
+  order: 1; }
+
+.profile {
+  order: 2; }
+
+@media (min-width: 950px) {
+  .information, .profile {
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-position: 0 0; } }

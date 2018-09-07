@@ -22,6 +22,5 @@ numeral.register('locale', 'id', {
 
 // switch between locales
 numeral.locale('id');
-
 var myNumeral = numeral('1k').format('$0,0[.]00')
-console.log(myNumeral);
+console.log(myNumeral); //Rp 1,000

@@ -11,3 +11,13 @@ Tip: Use a negative number to select from the end of the string. */
 var str = "Hello world!";
 var res = str.slice(1, 5);
 console.log(res);
+
+// Extract only the first character:
+var str = "Hello world!";
+var res = str.slice(0, 1);
+console.log(res);
+
+// Extract only the last character:
+var str = "Hello world!";
+var res = str.slice(-1);
+console.log(res);

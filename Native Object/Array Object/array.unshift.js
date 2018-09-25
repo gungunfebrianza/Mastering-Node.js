@@ -5,3 +5,5 @@ Tip: To add new items at the end of an array, use the push() method. */
 
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.unshift("Lemon", "Pineapple");
+
+console.log(fruits);

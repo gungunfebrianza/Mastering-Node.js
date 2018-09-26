@@ -1,3 +1,8 @@
+/* Definition
+ECMAScript 5 (2009) introduced Getter and Setters.
+Getters and setters allow you to define Object Accessors (Computed Properties). 
+This example uses a lang property to set the value of the language property.
+*/
 var person = {
   firstName: "John",
   lastName: "Doe",

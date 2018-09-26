@@ -1,6 +1,5 @@
 /* 
 Using the JavaScript Keyword new
-
 The following example also creates a new JavaScript object with four properties: */
 
 var person = new Object();

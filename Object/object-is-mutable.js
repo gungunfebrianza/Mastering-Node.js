@@ -1,4 +1,5 @@
-/* JavaScript Objects are Mutable
+/* Definition
+JavaScript Objects are Mutable
 Objects are mutable: They are addressed by reference, not by value.
 If person is an object, the following statement will not create a copy of person:
 The object x is not a copy of person. It is person. Both x and person are the same object.

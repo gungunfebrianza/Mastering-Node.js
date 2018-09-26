@@ -9,10 +9,14 @@ function Person(first, last, age, eye) {
   this.lastName = last;
   this.age = age;
   this.eyeColor = eye;
+  this.name = function() {
+    return this.firstName + " " + this.lastName;
+  };
 }
 var Gun = new Person("Gun", "Febrianza", 26, "blue");
 var Nowo = new Person("Nowo", "Adisuryo", 22, "green");
 console.log(Gun);
+console.log(Gun.name());
 console.log(Nowo);
 
 /* The this Keyword

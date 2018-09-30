@@ -28,6 +28,8 @@ let products = [
 let productComponents = [];
 
 for (let product of products) {
-  //productComponents.push(<Product />);
+  productComponents.push(product);
   console.log(product);
 }
+
+//console.log(productComponents);

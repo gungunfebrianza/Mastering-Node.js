@@ -19,7 +19,7 @@ arr 	Optional. The array object the current element belongs to */
 
 const numbers = [4, 9, 16, 25];
 const over18 = numbers.filter((value, index, array) => {
-  return value > 18;
+  return value > 8;
 });
 
 console.log(over18);

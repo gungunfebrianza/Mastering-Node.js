@@ -20,8 +20,8 @@ arr 	Optional. The array object the current element belongs to */
 Return Value: 	
 An Array containing the results of calling the provided function for each element in the original array. */
 
-const numbers = [4, 9, 16, 25];
-console.log(numbers.map(Math.sqrt));
+// const numbers = [4, 9, 16, 25];
+// console.log(numbers.map(Math.sqrt));
 
 var numbersMultiply = [65, 44, 12, 4];
 

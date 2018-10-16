@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import Layout from './components/Layout'
+import React from 'react';
+import Chat from 'components/Chat.js';
 
-class App extends Component {
+class AppComponent extends React.Component {
   render() {
-    return (
-      <div className="App">
-        <Layout title="Chat Application" />
-      </div>
-    );
+    return <Chat />;
   }
 }
 
-export default App;
+AppComponent.defaultProps = {};
+
+export default AppComponent;

@@ -1,0 +1,269 @@
+.container {
+	position:absolute;
+    width: 960px;
+    height: 687px;
+	border:1px solid black;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+}
+
+.titlePanel {
+	position: relative;
+	width: 960px;
+	height: 50px;
+	background-color: rgb(0,0,0);
+}
+
+.titlePanel > h1 {
+	position: absolute;
+	color: rgb(255,255,255);
+	font-family: sans-serif;
+	font-weight: normal;
+	font-size: 20px;
+	margin: 0;
+	padding:0;
+	top:15px;
+	left: 10px;
+}
+
+.controls {
+	position: relative;
+	background-color: rgb(236, 236, 236);
+	width: 960px;
+	height: 70px;
+	border-bottom: 1px solid black;
+}
+
+#roomsBtn {
+	position: absolute;
+	background-color: rgb(67, 202, 147);
+	padding: 17px;
+	left: 698px;
+	top:10px;
+	width:90px;
+	color:#FFF;
+	font-family:sans-serif;
+	text-decoration: none;
+	text-align: center;
+	outline:none;
+}
+
+#roomsBtn:hover {
+	background-color: rgb(45, 169, 118);
+}
+
+.chatListDiv {
+	position: relative;
+	width: 960px;
+	height: 566px;
+	/* background-color: red; */
+}
+
+.roomsList {
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	font-family: sans-serif;
+}
+
+.roomsList > a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+.roomsList > a > li {
+	padding: 18px;
+	background-color: rgb(245, 235, 202);
+	color: #000;
+	margin-bottom: 1px;
+}
+
+.userName {
+	position: absolute;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    top: 24px;
+    left: 77px;
+    margin: 0;
+}
+
+.userPicHolder {
+	position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.63);
+}
+
+.userPicHolder > img {
+	width: 50px;
+	height: 50px;
+}
+
+#logOutBtn {
+	position: absolute;
+	background-color: rgb(226, 98, 92);
+	padding: 17px;
+	left: 827px;
+	top:10px;
+	width:90px;
+	color:#FFF;
+	font-family:sans-serif;
+	text-decoration: none;
+	text-align: center;
+	outline:none;
+}
+
+#logOutBtn:hover {
+	background-color: rgb(232, 48, 39);
+}
+
+.chatMessagesPanel {
+	position: absolute;
+	/* background:red; */
+	height: 566px;
+	width: 692px;
+	border-right: 1px dashed black;
+}
+
+.chatUsers {
+	position: absolute;
+	height:566px;
+	background: #F7F4F4;
+	width: 267px;
+	left: 693px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.chatMessages {
+	position: relative;
+	/* background-color: red; */
+	border-bottom: 1px dashed;
+	width: 692px;
+	height: 490px;
+	top: 0px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.typePanel {
+	position: relative;
+	width:692px;
+	height: 75px;
+	background-color: #FFFFFF;
+}
+
+input[name='userInput'] {
+	position:absolute;
+	padding: 24px;
+	font-size: 22px;
+	width: 537px;
+	height: 23px;
+	top: 0px;
+	outline: 0px;
+	left: 0px;
+	border: none;
+}
+
+.chatBlock {
+	position: relative;
+	width: 622px;
+	/*height:20px;*/
+	background:rgba(0,0,0,0.1);
+	padding: 10px;
+	margin: 16px;
+	min-height: 32px;
+}
+
+.userPic {
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	top: 13px;
+	left: 10px;
+	background: rgba(0, 0, 0, 0.63);
+}
+
+.userPic > img {
+	width: 28px;
+	height: 28px;
+}
+
+.chatMsg {
+	position: relative;
+	left: 38px;
+	font-family: sans-serif;
+	font-size: 15px;
+	width: 591px;
+}
+
+.chatMsg > img {
+	margin:5px;
+	box-shadow:2px 1px 5px rgba(0,0,0,0.6);
+	border-radius:2px;
+}
+
+.userBlock {
+	position: relative;
+	background: #E8E7E1;
+	height: 50px;
+	width: 253px;
+	margin-bottom: 1px;
+}
+
+.cuserName {
+	position: absolute;
+	font-family: sans-serif;
+	font-size: 17px;
+	font-weight: normal;
+	top: 17px;
+	left: 46px;
+	margin: 0;
+}
+
+.fileUploadBtn {
+    position: absolute;
+    right: 14px;
+    width: 43px;
+    overflow: hidden;
+    top: 22px;
+    height: 21px;
+    outline: none;
+    color: #FFF;
+    background: rgb(67, 202, 147);
+    padding: 10px;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+
+/*.fileUploadBtn::-webkit-file-upload-button {
+	visibility: hidden;
+
+}
+.fileUploadBtn::before {
+	content: 'Photo';
+	display: inline-block;  
+	background: rgb(67, 202, 147);
+	border: none;
+	padding: 10px 10px;
+	outline: none;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 10pt;
+}
+.fileUploadBtn:hover::before {
+  	border-color: black;
+  
+}
+
+.fileUploadBtn:active::before {
+	background: rgb(45, 169, 118);
+}*/

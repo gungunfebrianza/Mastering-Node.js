@@ -1,0 +1,42 @@
+/* login.html stylesheet */
+.container {
+	position:absolute;
+	width: 350px;
+	height: 210px;
+	border:1px solid black;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+}
+
+.titlePanel {
+	position: relative;
+	width: 350px;
+	height: 50px;
+	background-color: rgb(0,0,0);
+}
+
+.titlePanel > h1 {
+	position: absolute;
+	color: rgb(255,255,255);
+	font-family: sans-serif;
+	font-weight: normal;
+	font-size: 20px;
+	margin: 0;
+	padding:0;
+	top:15px;
+	left: 10px;
+}
+
+.loginButton {
+	position: relative;
+	height: 150px;
+}
+
+#loginBtnImg {
+	position: relative;
+	top: 1px;
+	width: 350px;
+}

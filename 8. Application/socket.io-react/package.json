@@ -1,24 +1,19 @@
 {
-  "name": "chatt-app",
+  "name": "socketio-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "express": "^4.16.4",
     "react": "^16.5.2",
-    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.5",
-    "socket.io": "^2.1.1",
-    "uuid": "^3.3.2",
-    "uws": "^99.0.0"
+    "socket.io": "^2.1.1"
   },
   "scripts": {
-    "start": "concurrently 'npm run react' 'npm run server' ",
+    "client-install": "npm install --prefix client",
     "react": "react-scripts start",
-    "server": "nodemon src/server/index.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run react\""
   },
   "eslintConfig": {
     "extends": "react-app"

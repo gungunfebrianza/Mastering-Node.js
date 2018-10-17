@@ -1,5 +1,11 @@
 {
   "host": "http://localhost:3000",
   "uri": "mongodb://root:rootroot1@ds247410.mlab.com:47410/securechatdb",
-  "sessionSecret": "rootroot1"
+  "sessionSecret": "rootroot1",
+  "fb": {
+    "clientID": "1065416373582851",
+    "clientSecret": "b137b390e22db7eb19c40e2c22dbd875",
+    "callbackURL": "//localhost:3000/auth/facebok/callback",
+    "profileFields": ["id", "displayName", "photos"]
+  }
 }

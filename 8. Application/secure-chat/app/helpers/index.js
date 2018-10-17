@@ -70,8 +70,21 @@ let createNewUser = profile => {
   });
 };
 
+let findById = id => {
+  return new Promise((resolve, reject) => {
+    db.userModel.findById(id, (error, user) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(user);
+      }
+    });
+  });
+};
+
 module.exports = {
   route,
   findOne,
-  createNewUser
+  createNewUser,
+  findById
 };

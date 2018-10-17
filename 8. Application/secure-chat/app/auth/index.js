@@ -5,6 +5,18 @@ const h = require('../helpers');
 const FacebookStrategy = require('passport-facebook').Stragegy;
 
 module.exports = () => {
+  // Serializing & Deserializing User Data
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser((id, done) => {
+    //find the user using _.id
+    h.findById(id)
+      .then(user => done(null, user))
+      .catch(error => console.log('error when deserializing the user'));
+  });
+
   let authProcessor = (accessToken, refreshToken, profile, done) => {
     //find a user in the local db using profile.id
     //if user found, return the user data using done

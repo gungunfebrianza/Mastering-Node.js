@@ -1,4 +1,0 @@
-{
-  "host": "http://localhost:3000",
-  "uri": "mongodb://root:rootroot1@ds247410.mlab.com:47410/securechatdb"
-}

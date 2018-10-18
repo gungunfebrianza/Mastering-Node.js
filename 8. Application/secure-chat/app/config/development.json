@@ -5,7 +5,19 @@
   "fb": {
     "clientID": "1065416373582851",
     "clientSecret": "b137b390e22db7eb19c40e2c22dbd875",
-    "callbackURL": "//localhost:3000/auth/facebok/callback",
+    "callbackURL": "http://localhost:3000/auth/facebook/callback",
+    "enableProof": true,
     "profileFields": ["id", "displayName", "photos"]
+  },
+  "twitter": {
+    "consumerKey": "<twitter consumer key>",
+    "consumerSecret": "<twitter consumer secret key>",
+    "callbackURL": "//localhost:3000/auth/twitter/callback",
+    "profileFields": ["id", "displayName", "photos"]
+  },
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 6379,
+    "password": ""
   }
 }

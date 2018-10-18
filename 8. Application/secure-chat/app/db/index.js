@@ -1,5 +1,6 @@
 'use strict';
 const config = require('../config');
+//const logger = require('../logger');
 const Mongoose = require('mongoose');
 Mongoose.connect(config.uri);
 

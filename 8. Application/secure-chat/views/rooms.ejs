@@ -6,6 +6,38 @@
 	<title>Secure Chat - Rooms</title>
 	<link rel="stylesheet" href="./css/roomsStyles.css">
 	<script src="/js/jquery-2.1.4.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		'use strict';
+	$(() => {
+		let socket = io('<%= host %>' + '/roomslist');
+		let newRoomInput = $("input[name='roomName']");
+
+		let renderChatRooms = chatrooms => {
+			let roomsListDiv = $('#roomsListUL');
+			let listStr = '';
+			for(let cat of chatrooms) {
+				listStr += `<a href="/chat/${cat.roomID}"><li>${cat.room}</li></a>`;
+			}
+			roomsListDiv.html('').append(listStr);
+		}
+
+		// Get a list of chatrooms
+		socket.emit('getChatrooms');
+
+		// Event listener for chatRoomsList
+		socket.on('chatRoomsList', chatrooms => {
+			renderChatRooms(JSON.parse(chatrooms));
+		});
+
+		$('#createBtn').on('click', () => {
+			if(newRoomInput.val() !== '') {
+				socket.emit('createNewRoom', newRoomInput.val());
+				newRoomInput.val('');
+			}
+		});
+	});
+	</script>
 </head>
 
 <body>

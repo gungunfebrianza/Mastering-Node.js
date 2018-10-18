@@ -1,7 +1,7 @@
 'use strict';
 const router = require('express').Router();
 const db = require('../db');
-//const crypto = require('crypto');
+const crypto = require('crypto');
 
 let _registerRoutes = (routes, method) => {
   for (let key in routes) {
@@ -105,9 +105,9 @@ let findRoomByName = (allrooms, room) => {
 };
 
 // A function that generates a unique roomID
-/* let randomHex = () => {
+let randomHex = () => {
   return crypto.randomBytes(24).toString('hex');
-} */
+};
 
 // Find a chatroom with a given ID
 let findRoomById = (allrooms, roomID) => {
@@ -183,5 +183,10 @@ module.exports = {
   findOne,
   createNewUser,
   findById,
-  isAuthenticated
+  isAuthenticated,
+  findRoomByName,
+  randomHex,
+  findRoomById,
+  addUserToRoom,
+  removeUserFromRoom
 };

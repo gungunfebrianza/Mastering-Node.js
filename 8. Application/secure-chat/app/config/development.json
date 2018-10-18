@@ -5,7 +5,7 @@
   "fb": {
     "clientID": "1065416373582851",
     "clientSecret": "b137b390e22db7eb19c40e2c22dbd875",
-    "callbackURL": "http://localhost:3000/auth/facebook/callback",
+    "callbackURL": "https://480bebc4.ngrok.io/auth/facebook/callback",
     "enableProof": true,
     "profileFields": ["id", "displayName", "photos"]
   },

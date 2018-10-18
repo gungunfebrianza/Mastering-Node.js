@@ -14,6 +14,6 @@ app.use(passport.session());
 
 app.use('/', secureChat.router);
 
-app.listen(3000, () => {
+secureChat.ioServer(app).listen(app.get('port'), () => {
   console.log('Chat Server is Running on port!', app.get('port'));
 });

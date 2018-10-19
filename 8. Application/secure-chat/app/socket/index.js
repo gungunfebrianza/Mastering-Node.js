@@ -10,6 +10,8 @@ module.exports = (io, app) => {
     });
 
     socket.on('createNewRoom', newRoomInput => {
+
+
       // check to see if a room with the same title exists or not
       // if not, create one and broadcast it to everyone
       if (!h.findRoomByName(allrooms, newRoomInput)) {
@@ -19,7 +21,7 @@ module.exports = (io, app) => {
           roomID: h.randomHex(),
           users: []
         });
-
+        console.log(allrooms);
         // Emit an updated list to the creator
         socket.emit('chatRoomsList', JSON.stringify(allrooms));
         // Emit an updated list to everyone connected to the rooms page

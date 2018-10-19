@@ -10,7 +10,7 @@
 	<script>
 		'use strict';
 	$(() => {
-		let socket = io('<%= host %>' + '/roomslist');
+		let socket = io('http://localhost:3000/roomslist');
 		let newRoomInput = $("input[name='roomName']");
 
 		let renderChatRooms = chatrooms => {

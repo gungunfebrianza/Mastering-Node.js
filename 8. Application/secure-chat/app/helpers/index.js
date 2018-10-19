@@ -59,7 +59,7 @@ let createNewUser = profile => {
     let newChatUser = new db.userModel({
       profileId: profile.id,
       fullName: profile.displayName,
-      profilePic: profile.photos[0].value || ''
+      profilePic: profile.image
     });
     newChatUser.save(error => {
       if (error) {
@@ -126,7 +126,7 @@ let addUserToRoom = (allrooms, data, socket) => {
   let getRoom = findRoomById(allrooms, data.roomID);
   if (getRoom !== undefined) {
     // Get the active user's ID (ObjectID as used in session)
-    let userID = socket.request.session.passport.user;
+    let userID = 'asd'; //socket.request.session.passport.user;
     // Check to see if this user already exists in the chatroom
     let checkUser = getRoom.users.findIndex((element, index, array) => {
       if (element.userID === userID) {

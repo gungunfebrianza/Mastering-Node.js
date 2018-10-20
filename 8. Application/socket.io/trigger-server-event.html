@@ -65,7 +65,7 @@
       var socket = io();
       $('form').submit(function () {
         socket.emit('private message', $('#m').val());
-        socket.emit('my other event', { my: 'data' });
+        socket.emit('trigger event', { my: 'data' });
         $('#m').val('');
         return false;
       });

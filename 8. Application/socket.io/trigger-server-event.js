@@ -3,7 +3,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.get('/test', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/trigger-server-event.html');
 });
 
 io.on('connection', function(socketCustomerService) {
@@ -15,7 +15,7 @@ io.on('connection', function(socketCustomerService) {
     io.emit('chat message', msg);
   });
 
-  socketCustomerService.on('my other event', function(data) {
+  socketCustomerService.on('trigger event', function(data) {
     console.log(data);
   });
 

@@ -63,6 +63,7 @@
   <script>
     $(function () {
       var socket = io();
+
       $('form').submit(function () {
         // sending to all connected clients
         socket.emit('private message', $('#m').val());

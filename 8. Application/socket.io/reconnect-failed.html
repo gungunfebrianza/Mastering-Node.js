@@ -65,7 +65,7 @@
       // Creates a new Manager for the given URL
       var socket = io('http://localhost:3000/test'); //defaults to window.location
       console.log(io.protocol); //The protocol revision number 4
-
+      console.log(socket.connected); // true, Whether or not the socket is connected to the server.
 
       socket.on('chat message', function (msg) {
         //An unique identifier for the socket session. 

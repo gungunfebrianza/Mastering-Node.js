@@ -77,36 +77,9 @@
         $('#messages').append($('<li>').text(msg));
       });
 
-      // Reconnect
-      socket.on('reconnect’', (attempt) => {
-        console.log(attempt); //(Number) reconnection attempt number
-        alert('reconnect’!') //Fired upon a successful reconnection.
-      });
-
-      // Reconnect Error
-      socket.on('reconnect_error', (error) => {
-        console.log(error); //(Object) error object
-        alert('reconnect_error!') //Fired upon a reconnection attempt error.
-      });
-
-      // Reconnect Failed
-      socket.on('reconnect_failed', () => {
-        alert('reconnect_failed!') //Fired upon a reconnection attempt error.
-      });
-
-      // Connection Error
-      socket.on('connect_error', (error) => {
-        alert('Connected Error!')
-      });
-
-      // Connection Timeout
-      socket.on('connect_timeout', (timeout) => {
-        alert('Connected Timeout!')
-      });
-
       $('form').submit(function () {
         // sending to all connected clients
-        socket.emit('hello', $('#m').val());
+        // socket.emit('hello', $('#m').val());
         socket.close();
         $('#m').val('');
         return false;

@@ -9,15 +9,23 @@ app.get('/test', function(req, res) {
 io.on('connection', function(socketCustomerService) {
   console.log('a user connected');
 
-  socketCustomerService.on('private message', function(msg) {
-    console.log('privates message: ' + msg);
-    // sending to all connected clients
-    io.emit('chat message', msg);
+  socketCustomerService.join('room 237', msg => {
+    let rooms = Object.keys(socketCustomerService.rooms);
+    console.log(rooms); // [ <socket.id>, 'room 237' ]
+    console.log(socketCustomerService);
+
+    socketCustomerService.on('private message', function(msg) {
+      console.log('privates message: ' + msg);
+      // sending to all connected clients
+      io.emit('chat message', msg);
+    });
   });
 
-  socketCustomerService.on('my other event', function(data) {
-    console.log(data);
-  });
+  // socketCustomerService.on('private message', function(msg) {
+  //   console.log('privates message: ' + msg);
+  //   // sending to all connected clients
+  //   io.emit('chat message', msg);
+  // });
 
   socketCustomerService.on('disconnect', function() {
     console.log('user disconnected');

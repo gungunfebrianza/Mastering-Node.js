@@ -73,6 +73,7 @@
         console.log(socket.id);
         $('#messages').append($('<li>').text(msg + socket.id));
       });
+      // Detect Error
       socket.on('connect_error', (error) => {
         alert('error!')
       });

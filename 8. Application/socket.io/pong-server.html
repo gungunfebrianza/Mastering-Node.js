@@ -66,7 +66,6 @@
       var socket = io('http://localhost:3000/test'); //defaults to window.location
       console.log(io.protocol); //The protocol revision number 4
 
-
       socket.on('chat message', function (msg) {
         console.log(socket.id);
         $('#messages').append($('<li>').text(msg + socket.id));
@@ -76,6 +75,12 @@
       socket.on('ping', (ping) => {
         console.log(ping);
         alert('Ping!') //Fired when a ping packet is written out to the server.
+      });
+
+      // Pong
+      socket.on('pong', (ms) => {
+        console.log(ms);
+        alert('Pong!') //Fired when a pong is received from the server.
       });
 
       $('form').submit(function () {

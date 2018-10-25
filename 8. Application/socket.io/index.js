@@ -6,34 +6,55 @@ app.get('/test', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function(socketCustomerService) {
+var clients = 0;
+
+// 1. Detect Socket
+io.on('connection', function(clientsSocket) {
   console.log('a user connected');
+  clientsSocket.username = 'Anonymous';
+  clients++;
+  console.log('Total Clients ' + clients);
 
-  // socketCustomerService.join('room 237', msg => {
-  //   let rooms = Object.keys(socketCustomerService.rooms);
-  //   console.log(rooms); // [ <socket.id>, 'room 237' ]
-  //   //console.log(socketCustomerService);
-
-  //   io.emit('chat message', msg);
-
-  //   socketCustomerService.on('chat message', function(msg) {
-  //     console.log('chat message: ' + msg);
-  //     // sending to all connected clients
-  //     io.emit('chat message', msg);
-  //   });
-  // });
-
-  socketCustomerService.on('hello', function(msg) {
-    console.log('privates message: ' + msg);
-    // sending to all connected clients
-    io.emit('chat message', msg);
+  clientsSocket.broadcast.emit('broadcast', {
+    description: clients + ' clients connected! broadcast!'
   });
 
-  socketCustomerService.on('disconnect', function() {
+  clientsSocket.on('change_username', data => {
+    clientsSocket.username = data.username;
+    console.log(data.username);
+  });
+
+  clientsSocket.on('chat', function(data) {
+    console.log('message: ' + data.message);
+    io.sockets.emit('chat', {
+      message: data.message,
+      username: clientsSocket.username
+    });
+  });
+
+  /* Broadcasting  
+  On the other side, we listen to typing and we broadcast a message.Broadcasting means sending a message to everyone else except for the socket that starts it. 
+  */
+  clientsSocket.on('typing', data => {
+    clientsSocket.broadcast.emit('typing', {
+      username: clientsSocket.username
+    });
+  });
+
+  clientsSocket.on('disconnect', function() {
     console.log('user disconnected');
+    clients--;
+    console.log('Total Clients ' + clients);
+    clientsSocket.broadcast.emit('broadcast', {
+      description: clients + ' clients connected! broadcast!'
+    });
   });
 });
 
-http.listen(3000, function() {
-  console.log('listening on *:3000');
+http.listen(9999, function() {
+  console.log('listening on *:9999');
 });
+
+// ======= CHEATSHEET
+// sending to all connected clients
+// io.emit('chat message', msg);

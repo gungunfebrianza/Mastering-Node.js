@@ -105,6 +105,10 @@ p.message {
       <input id="username" type="text" />
       <button id="send_username" type="button">Change username</button>
     </div>
+    <div id="change_username">
+      <input id="server-time" type="text" value=" - " />
+      <button id="get-server-time" type="button">Get Server Time</button>
+    </div>
   </section>
 
   <section id="chatroom">
@@ -124,6 +128,11 @@ p.message {
       //make connection
       var socket = io.connect()
 
+      var socketNamespace = io('/namespace');
+      socketNamespace.on('hi', function (data) {
+        alert(data);
+      });
+
       //buttons and inputs
       var message = $("#message")
       var username = $("#username")
@@ -139,6 +148,11 @@ p.message {
       socket.on('broadcast', function (data) {
         alert('Total User Connected ' + data.description)
       });
+
+      socket.on('time', function (timeString) {
+        document.getElementById("server-time").value = 'Server time: ' + timeString;
+      });
+
 
       //Emit message
       send_message.click(function () {

@@ -11,13 +11,21 @@ var clients = 0;
 // 1. Detect Socket
 io.on('connection', function(clientsSocket) {
   console.log('a user connected');
+
+  // 2. Initialize Default Username
   clientsSocket.username = 'Anonymous';
+
+  // 3. Count Connected ClientsSocket
   clients++;
   console.log('Total Clients ' + clients);
 
+  // 4. Send Total Online User
   clientsSocket.broadcast.emit('broadcast', {
     description: clients + ' clients connected! broadcast!'
   });
+
+  // 5. Send Server Time
+  setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
   clientsSocket.on('change_username', data => {
     clientsSocket.username = data.username;
@@ -32,9 +40,6 @@ io.on('connection', function(clientsSocket) {
     });
   });
 
-  /* Broadcasting  
-  On the other side, we listen to typing and we broadcast a message.Broadcasting means sending a message to everyone else except for the socket that starts it. 
-  */
   clientsSocket.on('typing', data => {
     clientsSocket.broadcast.emit('typing', {
       username: clientsSocket.username
@@ -51,10 +56,20 @@ io.on('connection', function(clientsSocket) {
   });
 });
 
+var namespace = io.of('/namespace');
+namespace.on('connection', function(socket) {
+  console.log('someone connected');
+  namespace.emit('hi', 'Hello everyone!');
+});
+
 http.listen(9999, function() {
   console.log('listening on *:9999');
 });
 
-// ======= CHEATSHEET
-// sending to all connected clients
-// io.emit('chat message', msg);
+/*  ======= CHEATSHEET
+    Sending to all connected clients
+    io.emit('chat message', msg);
+    Broadcasting  
+    clientsSocket.broadcast.emit
+    On the other side, we listen to typing and we broadcast a message.Broadcasting means sending a message to everyone else except for the socket that starts it. 
+*/

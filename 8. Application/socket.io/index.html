@@ -125,14 +125,6 @@ p.message {
   <script>
 
     $(function () {
-      //make connection
-      var socket = io.connect()
-
-      var socketNamespace = io('/namespace');
-      socketNamespace.on('hi', function (data) {
-        alert(data);
-      });
-
       //buttons and inputs
       var message = $("#message")
       var username = $("#username")
@@ -141,14 +133,20 @@ p.message {
       var chatroom = $("#chatroom")
       var feedback = $("#feedback")
 
+      // Create Client Socket
+      var socket = io.connect()
+
+      // Fire at First Connection
       socket.on('connect', () => {
         alert('connected at start!')
       });
 
+      // Read Total User
       socket.on('broadcast', function (data) {
         alert('Total User Connected ' + data.description)
       });
 
+      // Read Server Time
       socket.on('time', function (timeString) {
         document.getElementById("server-time").value = 'Server time: ' + timeString;
       });
@@ -182,6 +180,16 @@ p.message {
       socket.on('typing', (data) => {
         feedback.html("<p><i>" + data.username + " is typing a message..." + "</i></p>")
       })
+
+
+      var socketNamespace = io('/namespace');
+      socketNamespace.on('connect', () => {
+        alert('connected at namespace!')
+      });
+
+      socketNamespace.on('hi', function (data) {
+        alert(data);
+      });
     });
   </script>
 </body>

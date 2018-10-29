@@ -138,12 +138,16 @@ p.message {
 
       // Fire at First Connection
       socket.on('connect', () => {
-        alert('connected at start!')
+        console.log('ON CONNECT EVENT!')
+      });
+
+      socket.on('connectToRoom', function (data) {
+        console.log(data);
       });
 
       // Read Total User
       socket.on('broadcast', function (data) {
-        alert('Total User Connected ' + data.description)
+        console.log('Total User Connected ' + data.description)
       });
 
       // Read Server Time
@@ -151,11 +155,10 @@ p.message {
         document.getElementById("server-time").value = 'Server time: ' + timeString;
       });
 
-
       //Emit message
       send_message.click(function () {
         socket.emit('chat', { message: message.val() })
-        alert('Send Message Success!')
+        console.log('Send Message Success!')
       })
 
       //Listen on new_message
@@ -168,7 +171,7 @@ p.message {
       //Emit a username
       send_username.click(function () {
         socket.emit('change_username', { username: username.val() })
-        alert('Username changed!')
+        console.log('Username changed!')
       })
 
       //Emit typing
@@ -181,14 +184,13 @@ p.message {
         feedback.html("<p><i>" + data.username + " is typing a message..." + "</i></p>")
       })
 
-
       var socketNamespace = io('/namespace');
       socketNamespace.on('connect', () => {
-        alert('connected at namespace!')
+        console.log('connected at namespace!')
       });
 
       socketNamespace.on('hi', function (data) {
-        alert(data);
+        console.log(data);
       });
     });
   </script>

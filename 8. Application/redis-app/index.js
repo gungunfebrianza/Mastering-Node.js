@@ -17,3 +17,23 @@ client.get('my test key', function(error, result) {
   }
   console.log('GET result ->' + result);
 });
+
+client.setex('1', 60, JSON.stringify({ name: 'Gun', Age: '26' }));
+
+client.get('1', (error, result) => {
+  if (result) {
+    console.log({ 'user data': JSON.parse(result), source: 'redis-cache' });
+  } else {
+    db.one('SELECT * FROM data WHERE id = $1', userID)
+      .then(data => {
+        console.log('single data', data);
+        //cache it
+        client.setex('1', 60, JSON.stringify({ name: 'Gun', Age: '26' }));
+        //return result
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+});

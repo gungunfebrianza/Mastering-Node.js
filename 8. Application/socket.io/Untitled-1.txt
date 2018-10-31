@@ -1,0 +1,411 @@
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const dbURL =
+  'mongodb://root:roottoor2019@ds247410.mlab.com:47410/securechatdb';
+
+mongoose.connect(
+  dbURL,
+  err => {
+    if (err) console.log(err);
+    console.log('Connected to Mlab');
+  }
+);
+
+var Message = mongoose.model('Message', {
+  name: String,
+  message: String
+});
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.get('/test', function(req, res) {
+  res.sendFile(__dirname + '/test.html');
+});
+
+var clients = 0;
+var roomno = 1;
+
+// 1. Detect Socket
+io.on('connection', function(clientsSocket) {
+  console.log('A User Connected! Anonymous ' + clientsSocket.id);
+
+  // 2. Initialize Default Username
+  clientsSocket.username = 'Anonymous ' + clientsSocket.id;
+
+  roomno++;
+  clientsSocket.join('room-' + roomno);
+  console.log('Anonymous ' + clientsSocket.id + ' Join Room ' + roomno);
+
+  //Send this event to everyone in the room.
+  io.in('room-' + roomno).emit(
+    'connectToRoom',
+    'You are in room no. ' + roomno
+  );
+
+  // 3. Count Connected ClientsSocket
+  clients++;
+  console.log('Total Clients ' + clients);
+
+  // 4. Send Total Online User
+  clientsSocket.broadcast.emit('broadcast', {
+    description: clients + ' clients connected! broadcast!'
+  });
+
+  // 5. Send Server Time
+  //setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+
+  // 6. Change Username
+  clientsSocket.on('change_username', data => {
+    clientsSocket.username = data.username;
+    console.log(data.username);
+  });
+
+  // 7. Chat Event
+  clientsSocket.on('chat', function(data) {
+    console.log('message: ' + data.message);
+    const objmsg = {
+      name: clientsSocket.username,
+      message: data.message
+    };
+    // const msg = new Message(objmsg);
+    // msg.save(err => {
+    //   if (err) sendStatus(500);
+    // });
+    io.sockets.emit('chat', {
+      message: data.message,
+      username: clientsSocket.username
+    });
+  });
+
+  // 8. Event Typing
+  clientsSocket.on('typing', data => {
+    clientsSocket.broadcast.emit('typing', {
+      username: clientsSocket.username
+    });
+  });
+
+  // 9. Detect Disconnect
+  clientsSocket.on('disconnect', function() {
+    console.log('user disconnected');
+    clients--;
+    console.log('Total Clients ' + clients);
+    clientsSocket.broadcast.emit('broadcast', {
+      description: clients + ' clients connected! broadcast!'
+    });
+  });
+
+  // 10. Detect Error
+  clientsSocket.on('error', function(err) {
+    console.log('received error from client:', clientsSocket.id);
+    console.log(err);
+  });
+});
+
+var namespace = io.of('/namespace');
+namespace.on('connection', function(socket) {
+  console.log('someone connected');
+  namespace.emit('hi', 'Hello everyone!');
+});
+
+http.listen(9999, function() {
+  console.log('listening on *:9999');
+});
+
+/*  ======= CHEATSHEET
+    Sending to all connected clients
+    io.emit('chat message', msg);
+    Broadcasting  
+    clientsSocket.broadcast.emit
+    On the other side, we listen to typing and we broadcast a message.Broadcasting means sending a message to everyone else except for the socket that starts it. 
+*/
+
+// clientsSocket.on('register', handleRegister);
+// clientsSocket.on('join', handleJoin);
+// clientsSocket.on('leave', handleLeave);
+// clientsSocket.on('message', handleMessage);
+// clientsSocket.on('chatrooms', handleGetChatrooms);
+// clientsSocket.on('availableUsers', handleGetAvailableUsers);
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
+  <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
+  <style>
+    * {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+    padding: 30px 0px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0px;
+}
+
+div#change_username, section#input_zone {
+    
+}
+
+.wrapper{ 
+  display: inline-block;
+  width: 30%;
+  box-shadow: 1px 2px 0px 0px #ddd;
+  margin: 0px 1.5%;
+  padding: 20px;
+  background: #f7f7f7;
+  border-radius: 10px;
+}
+
+div.box_wrapper {
+  width: 70%; 
+    display: inline-block; 
+    padding-bottom: 20px;
+}
+
+div.text{ 
+  width: 29%;
+  text-align: right;
+}
+
+.box_wrapper input{
+  padding: 7px 15px;
+  height: 32px;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+.box_wrapper button{  
+  position: relative;
+  border-radius: 3px;
+  background: #81BEF7;
+  cursor:pointer;
+  margin-left: 7px;
+  color: #fff;
+  font-weight: 700;
+  top: 1px;
+  display: inline-block;
+  height: 32px;  
+  border: 1px solid #999;
+}
+
+section.chatroom {
+  border-radius: 5px;
+  background: #fff;
+  height: 350px;
+    border: 1px solid #999  ; 
+    box-shadow: inset 0px 0px 6px -2px rgba(0,0,0,0.3);
+    overflow: auto;
+}
+
+.chatroom .element{
+  width: 100%;
+  padding: 10px;
+}
+.chatroom .element.left{
+  text-align: left;
+} 
+
+.chatroom .element.left div{      
+  color: #333;
+  background: #eee;
+}
+
+.chatroom .element.right div{      
+  color: #333;
+  background: #81DAF5;
+}
+
+.chatroom .element.right{
+  text-align: right;
+}
+
+.chatroom .element div{
+  display: inline-block;
+  background: #ddd;
+  width: 70%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+section#input_zone { 
+  text-align: left;
+  padding: 10px 0px; 
+    position: relative;
+}
+ 
+
+input#username {
+  width: 70%;
+    font-family: 'Open Sans', sans-serif;
+    box-shadow: inset 0px 0px 6px -3px rgba(0,0,0,0.3);
+}
+
+textarea.message {
+    display: inline-block;
+    box-shadow: inset 0px 0px 6px -2px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    border: 1px solid #999;
+    padding: 10px 15px;
+    font-size: 12px;
+    width: calc(100% - 75px);
+    height: 100px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+button.send_message { 
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 3px;
+  background: #81BEF7;
+  cursor:pointer;
+  color: #fff;
+  font-weight: 700; 
+  display: inline-block;
+  height: 32px;  
+  border: 1px solid #999;
+}
+ 
+  </style>
+  <title>Client</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="wrapper">
+      <section>
+        <div id="change_username1" class="box_wrapper">
+          <input id="username1" type="text" placeholder="Change Username" />
+          <button id="send_username1" type="button">Change</button>
+        </div>
+        <div class="box_wrapper text">
+          Room A
+        </div>
+      </section>
+      <section id="chatroom1" class="chatroom">
+      </section>
+
+      <section id="input_zone">
+        <textarea id="message1" class="message"></textarea>
+        <button id="send_message1" class="send_message" type="button">Send</button>
+      </section>
+    </div>
+
+    <div class="wrapper">
+      <section>
+        <div id="change_username2" class="box_wrapper">
+          <input id="username2" type="text" placeholder="Change Username" />
+          <button id="send_username2" type="button">Change</button>
+        </div>
+        <div class="box_wrapper text">
+          Namespace
+        </div>
+      </section>
+      <section id="chatroom2" class="chatroom">
+      </section>
+
+      <section id="input_zone">
+        <textarea id="message2" class="message"></textarea>
+        <button id="send_message2" class="send_message" type="button">Send</button>
+      </section>
+    </div>
+
+    <div class="wrapper">
+      <section>
+        <div id="change_username3" class="box_wrapper">
+          <input id="username3" type="text" placeholder="Change Username" />
+          <button id="send_username3" type="button">Change</button>
+        </div>
+        <div class="box_wrapper text">
+          Default
+        </div>
+      </section>
+      <section id="chatroom3" class="chatroom">
+      </section>
+
+      <section id="input_zone">
+        <textarea id="message3" class="message"></textarea>
+        <button id="send_message3" class="send_message" type="button">Send</button>
+      </section>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $(function () {
+
+      // Create Client Socket
+      var socket = io.connect()
+
+      // Fire at First Connection
+      socket.on('connect', () => {
+        console.log('ON CONNECT EVENT!')
+      });
+
+      var message2 = $("#message2")
+      var send_message2 = $("#send_message2")
+      var chatroom2 = $("#chatroom2")
+
+      //Emit message
+      send_message2.click(function () {
+        socket.emit('receive', { message: message2.val() })
+        chatroom2.append("<section class='element left'><div>" + 'You' + ": " + message2.val() + "</div> </section>")
+        message2.val('');
+        console.log('Send Message Success!')
+      })
+
+      var message3 = $("#message3")
+      var send_message3 = $("#send_message3")
+      var chatroom3 = $("#chatroom3")
+
+      //Emit message
+      send_message3.click(function () {
+        socket.emit('chat', { message: message3.val() })
+        chatroom3.append("<section class='element left'><div>" + 'You ' + ": " + message3.val() + "</div> </section>")
+        message3.val('');
+        console.log('Send Message Success!')
+      })
+
+      //Listen on new_message
+      socket.on("chat", (data) => {
+        message2.val('');
+        chatroom2.append("<section class='element right'><div>" + data.username + ": " + data.message + "</div> </section>")
+      })
+
+      //Listen on new_message
+      socket.on("receive", (data) => {
+        message3.val('');
+        chatroom3.append("<section class='element right'><div>" + data.username + ": " + data.message + "</div> </section>")
+      })
+
+
+    });
+  </script>
+</body>
+
+</html>

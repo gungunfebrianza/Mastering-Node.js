@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+
+    <h1><span class="glyphicon glyphicon-heart"></span> Hugs!</h1>
+
+    <hr />
+
+    <form id="add-username" class="row">
+      <div class="col-md-3">
+        <input class="form-control" id="username" placeholder="Username" />
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-primary">Join</button>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-md-6" id="sockets" style="display: none"></div>
+      <div class="col-md-6" id="hugs"></div>
+    </div>
+
+  </div>
+
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io('http://localhost:5000');
+
+    function addUser(user) {
+      $('#sockets').append(`<div id="${user.id}" class="socket">
+                <span class="glyphicon glyphicon-user"></span>
+                ${user.username} -
+                <a href="#" class="hug" data-username="${user.username}" data-id="${user.id}">Hug</a>
+                <hr />
+            </div>`);
+    }
+
+    function addUsername(e) {
+      e.preventDefault();
+
+      socket.emit('username.create', $('#username').val());
+
+      $('#sockets').show();
+      $(this).hide();
+    }
+
+    function giveHug(e) {
+
+      var id = $(this).data('id'),
+        username = $(this).data('username');
+
+      e.preventDefault();
+
+      socket.emit('user.hug', id);
+
+      $('#hugs').prepend(`<p>
+                <span class="glyphicon glyphicon-heart-empty"></span>
+                You just hugged ${username}.
+                <hr />
+            </p>`);
+    }
+
+    socket.on('users.list', function (list) {
+      list.forEach(addUser);
+    });
+
+    socket.on('user.hugged', function (username) {
+      $('#hugs').prepend(`<p>
+                <span class="glyphicon glyphicon-heart"></span>
+                ${username} just hugged you.
+                <hr />
+            </p>`);
+    });
+
+    socket.on('user.remove', function (id) {
+      $('#' + id).remove();
+    });
+
+    socket.on('user.add', addUser);
+
+    $(function () {
+      $('#sockets').delegate('.hug', 'click', giveHug);
+
+      $('#add-username').on('submit', addUsername);
+    });
+  </script>
+</body>
+
+</html>

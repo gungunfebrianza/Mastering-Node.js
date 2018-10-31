@@ -1,4 +1,5 @@
-var app = require('express')();
+var express = require('express');
+const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const bodyParser = require('body-parser');
@@ -22,64 +23,56 @@ var Message = mongoose.model('Message', {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.get('/test', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+app.use(express.static(__dirname + '/public'));
+
+app.get('/operator', function(req, res) {
+  res.sendFile(__dirname + '/operator.html');
 });
 
-var clients = 0;
-var roomno = 1;
+app.get('/client', function(req, res) {
+  res.sendFile(__dirname + '/client.html');
+});
+
+// We will keep a record of all connected sockets
+var sockets = {};
 
 // 1. Detect Socket
 io.on('connection', function(clientsSocket) {
-  console.log('A User Connected! ' + clientsSocket.id);
+  
+  // Emit the connected users when a new socket connects
+  for (var i in sockets) {
+    socket.emit('user.add', {
+      username: sockets[i].username,
+      id: sockets[i].id
+    });
+  }
+
+  // 2. Emit ServerTime
+  setInterval(function() {
+    clientsSocket.emit('serverTime', { time: new Date() });
+  }, 1000);
+
+  console.log('A User Connected! Anonymous ' + clientsSocket.id);
 
   // 2. Initialize Default Username
-  clientsSocket.username = 'Anonymous';
+  clientsSocket.username = clientsSocket.id;
 
-  //Increase roomno 2 clients are present in a room.
-  if (
-    io.nsps['/'].adapter.rooms['room-' + roomno] &&
-    io.nsps['/'].adapter.rooms['room-' + roomno].length > 1
-  )
-    roomno++;
-  clientsSocket.join('room-' + roomno);
-
-  //Send this event to everyone in the room.
-  io.in('room-' + roomno).emit(
-    'connectToRoom',
-    'You are in room no. ' + roomno
-  );
-
-  // 3. Count Connected ClientsSocket
-  clients++;
-  console.log('Total Clients ' + clients);
-
-  // 4. Send Total Online User
-  clientsSocket.broadcast.emit('broadcast', {
-    description: clients + ' clients connected! broadcast!'
-  });
-
-  // 5. Send Server Time
-  //setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
-
-  // 6. Change Username
-  clientsSocket.on('change_username', data => {
-    clientsSocket.username = data.username;
-    console.log(data.username);
-  });
+  clientsSocket.join('test');
+  console.log('Anonymous ' + clientsSocket.id + ' Join Room');
 
   // 7. Chat Event
-  clientsSocket.on('chat', function(data) {
+  clientsSocket.on('operator', function(data) {
     console.log('message: ' + data.message);
-    const objmsg = {
-      name: clientsSocket.username,
-      message: data.message
-    };
-    const msg = new Message(objmsg);
-    msg.save(err => {
-      if (err) sendStatus(500);
+    clientsSocket.broadcast.emit('operator', {
+      message: data.message,
+      username: clientsSocket.username
     });
-    io.sockets.emit('chat', {
+  });
+
+  // 8. Receive Event
+  clientsSocket.on('client', function(data) {
+    console.log('message: ' + data.message);
+    clientsSocket.broadcast.emit('client', {
       message: data.message,
       username: clientsSocket.username
     });
@@ -95,41 +88,9 @@ io.on('connection', function(clientsSocket) {
   // 9. Detect Disconnect
   clientsSocket.on('disconnect', function() {
     console.log('user disconnected');
-    clients--;
-    console.log('Total Clients ' + clients);
-    clientsSocket.broadcast.emit('broadcast', {
-      description: clients + ' clients connected! broadcast!'
-    });
   });
-
-  // 10. Detect Error
-  clientsSocket.on('error', function(err) {
-    console.log('received error from client:', clientsSocket.id);
-    console.log(err);
-  });
-});
-
-var namespace = io.of('/namespace');
-namespace.on('connection', function(socket) {
-  console.log('someone connected');
-  namespace.emit('hi', 'Hello everyone!');
 });
 
 http.listen(9999, function() {
   console.log('listening on *:9999');
 });
-
-/*  ======= CHEATSHEET
-    Sending to all connected clients
-    io.emit('chat message', msg);
-    Broadcasting  
-    clientsSocket.broadcast.emit
-    On the other side, we listen to typing and we broadcast a message.Broadcasting means sending a message to everyone else except for the socket that starts it. 
-*/
-
-// clientsSocket.on('register', handleRegister);
-// clientsSocket.on('join', handleJoin);
-// clientsSocket.on('leave', handleLeave);
-// clientsSocket.on('message', handleMessage);
-// clientsSocket.on('chatrooms', handleGetChatrooms);
-// clientsSocket.on('availableUsers', handleGetAvailableUsers);

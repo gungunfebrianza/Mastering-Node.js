@@ -35,22 +35,28 @@ app.get('/client', function(req, res) {
 
 // We will keep a record of all connected sockets
 var sockets = {};
+var ySID = '';
 
 // 1. Detect Socket
 io.on('connection', function(clientsSocket) {
-  
-  // Emit the connected users when a new socket connects
+  sockets[clientsSocket.id] = clientsSocket;
+  clientsSocket.emit('getSocketID', { id: clientsSocket.id });
+  ySID = clientsSocket.id;
+
+  // 2. Sending to All Connected Client
+  clientsSocket.broadcast.emit('recordUser', { id: clientsSocket.id });
+
+  // 3. Emit the connected users when a new socket connects
   for (var i in sockets) {
-    socket.emit('user.add', {
-      username: sockets[i].username,
-      id: sockets[i].id
-    });
+    if (sockets[i].id != ySID) {
+      clientsSocket.emit('recordUser', { id: sockets[i].id });
+    }
   }
 
-  // 2. Emit ServerTime
-  setInterval(function() {
-    clientsSocket.emit('serverTime', { time: new Date() });
-  }, 1000);
+  // // 3. Emit ServerTime
+  // setInterval(function() {
+  //   clientsSocket.emit('serverTime', { time: new Date() });
+  // }, 1000);
 
   console.log('A User Connected! Anonymous ' + clientsSocket.id);
 
@@ -88,6 +94,8 @@ io.on('connection', function(clientsSocket) {
   // 9. Detect Disconnect
   clientsSocket.on('disconnect', function() {
     console.log('user disconnected');
+    delete sockets[clientsSocket.id];
+    io.emit('removeUser', clientsSocket.id);
   });
 });
 

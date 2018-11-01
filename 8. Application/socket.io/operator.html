@@ -217,10 +217,9 @@ button.send_message {
           </div>
           <br><br><br>
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">
+            <a href="#" id="listUser" class="list-group-item list-group-item-action active">
               List User
             </a>
-            <a href="#" class="list-group-item list-group-item-action">User 1</a>
           </div>
         </section>
       </div>
@@ -371,11 +370,17 @@ button.send_message {
       })
 
 
+      socket.on('getSocketID', (socket) => {
+        $('#listUser').text(`List User - Your ID ${socket.id}`);
+      });
 
+      socket.on('recordUser', (user) => {
+        $('#listUser').after(`<a href="#" id="${user.id}" class="list-group-item list-group-item-action">Connected With ID : ${user.id}</a>`);
+      });
 
-      
-
-
+      socket.on('removeUser', function (id) {
+        $('#' + id).remove();
+      });
 
     });
   </script>

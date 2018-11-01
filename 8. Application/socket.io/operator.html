@@ -227,9 +227,9 @@ button.send_message {
 
       <div class="wrapper">
         <section>
-          <div id="change_username2" class="box_wrapper">
-            <input id="username2" type="text" placeholder="Change Username" />
-            <button id="send_username2" type="button">Change</button>
+          <div id="change_username" class="box_wrapper">
+            <input id="username" type="text" placeholder="Change Username" />
+            <button id="send_username" type="button">Change</button>
           </div>
           <p id="serverTime">
             -
@@ -378,12 +378,17 @@ button.send_message {
         $('#listUser').after(`<a href="#" id="${user.id}" onmouseover="hoverSocket($(this).attr('id'))" onmouseout="noSocketHover()" class="list-group-item list-group-item-action">Connected With ID : ${user.id}</a>`);
       });
 
+      //Emit a username
+      $("#send_username").click(function () {
+        socket.emit('change_username', { username: $('#username').val() })
+        alert('Username changed!')
+      })
+
       socket.on('removeUser', function (id) {
         $('#' + id).remove();
       });
 
     });
-
 
     function hoverSocket(x) {
       $('#socketID').val(x)

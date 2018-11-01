@@ -53,15 +53,21 @@ io.on('connection', function(clientsSocket) {
     }
   }
 
+  // 4. Change Username
+  clientsSocket.on('change_username', data => {
+    clientsSocket.username = data.username;
+    console.log(data.username);
+  });
+
+  clientsSocket.on('linePrivateMessage', data => {
+    // sending to individual socketid (private message)
+    io.to(data.socketid).emit('hey', 'I just met you');
+  });
+
   // // 3. Emit ServerTime
   // setInterval(function() {
   //   clientsSocket.emit('serverTime', { time: new Date() });
   // }, 1000);
-
-  console.log('A User Connected! Anonymous ' + clientsSocket.id);
-
-  // 2. Initialize Default Username
-  clientsSocket.username = clientsSocket.id;
 
   clientsSocket.join('test');
   console.log('Anonymous ' + clientsSocket.id + ' Join Room');

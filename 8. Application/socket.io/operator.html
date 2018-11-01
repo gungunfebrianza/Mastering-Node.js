@@ -375,7 +375,7 @@ button.send_message {
       });
 
       socket.on('recordUser', (user) => {
-        $('#listUser').after(`<a href="#" id="${user.id}" class="list-group-item list-group-item-action">Connected With ID : ${user.id}</a>`);
+        $('#listUser').after(`<a href="#" id="${user.id}" onmouseover="hoverSocket($(this).attr('id'))" onmouseout="noSocketHover()" class="list-group-item list-group-item-action">Connected With ID : ${user.id}</a>`);
       });
 
       socket.on('removeUser', function (id) {
@@ -383,6 +383,15 @@ button.send_message {
       });
 
     });
+
+
+    function hoverSocket(x) {
+      $('#socketID').val(x)
+    }
+    function noSocketHover() {
+      $('#socketID').val('')
+    }
+
   </script>
 
 </body>

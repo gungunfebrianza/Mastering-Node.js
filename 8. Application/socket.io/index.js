@@ -2,8 +2,10 @@ var express = require('express');
 const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const PORT = process.env.PORT || 9000;
 
 const dbURL =
   'mongodb://root:roottoor2019@ds247410.mlab.com:47410/securechatdb';
@@ -21,10 +23,20 @@ var Message = mongoose.model('Message', {
   message: String
 });
 
+app.use(
+  session({
+    secret: '2C44-4D44-WppQ38S',
+    resave: true,
+    saveUninitialized: true
+  })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// 1. Setup Public Folder
 app.use(express.static(__dirname + '/public'));
 
+// 2.
 app.get('/operator', function(req, res) {
   res.sendFile(__dirname + '/operator.html');
 });
@@ -56,12 +68,18 @@ io.on('connection', function(clientsSocket) {
   // 4. Change Username
   clientsSocket.on('change_username', data => {
     clientsSocket.username = data.username;
-    console.log(data.username);
+    console.log(`${ySID} Change Username to ${data.username}`);
   });
 
   clientsSocket.on('linePrivateMessage', data => {
     // sending to individual socketid (private message)
-    io.to(data.socketid).emit('hey', 'I just met you');
+    console.log('message: ' + data.message);
+    console.log('from : ' + ySID);
+    console.log('to : ' + data.socketid);
+    io.to(`${data.socketid}`).emit('linePrivateMessage', {
+      message: data.message,
+      username: clientsSocket.username
+    });
   });
 
   // // 3. Emit ServerTime
@@ -105,6 +123,6 @@ io.on('connection', function(clientsSocket) {
   });
 });
 
-http.listen(9999, function() {
-  console.log('listening on *:9999');
+http.listen(PORT, function() {
+  console.log(`listening on *: ${PORT}`);
 });

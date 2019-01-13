@@ -1,222 +1,240 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
+    <link
+      href="http://fonts.googleapis.com/css?family=Comfortaa"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-<head>
-  <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
-  <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
-  <style>
-    * {
-    box-sizing: border-box;
-}
+      html {
+        height: 100%;
+      }
 
-html {
-    height: 100%;
-}
+      body {
+        margin: 0px;
+        height: 100%;
+        padding: 30px 0px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 12px;
+      }
 
-body {
-    margin: 0px;
-    height: 100%;
-    padding: 30px 0px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-}
+      header {
+        text-align: center;
+      }
 
-header {
-    text-align: center;
-}
+      h1 {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0px;
+      }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0px;
-}
+      div#change_username,
+      section#input_zone {
+      }
 
-div#change_username, section#input_zone {
-    
-}
+      .wrapper {
+        display: inline-block;
+        width: 30%;
+        box-shadow: 1px 2px 0px 0px #ddd;
+        margin-left: 550px;
+        padding: 20px;
+        background: #f7f7f7;
+        border-radius: 10px;
+      }
 
-.wrapper{ 
-  display: inline-block;
-  width: 30%;
-  box-shadow: 1px 2px 0px 0px #ddd;
-  margin-left: 550px;
-  padding: 20px;
-  background: #f7f7f7;
-  border-radius: 10px;
-}
+      div.box_wrapper {
+        width: 70%;
+        display: inline-block;
+        padding-bottom: 20px;
+      }
 
-div.box_wrapper {
-  width: 70%; 
-    display: inline-block; 
-    padding-bottom: 20px;
-}
+      div.text {
+        width: 29%;
+        text-align: right;
+      }
 
-div.text{ 
-  width: 29%;
-  text-align: right;
-}
+      .box_wrapper input {
+        padding: 7px 15px;
+        height: 32px;
+        border: 1px solid #999;
+        border-radius: 3px;
+      }
 
-.box_wrapper input{
-  padding: 7px 15px;
-  height: 32px;
-  border: 1px solid #999;
-  border-radius: 3px;
-}
+      .box_wrapper button {
+        position: relative;
+        border-radius: 3px;
+        background: #81bef7;
+        cursor: pointer;
+        margin-left: 7px;
+        color: #fff;
+        font-weight: 700;
+        top: 1px;
+        display: inline-block;
+        height: 32px;
+        border: 1px solid #999;
+      }
 
-.box_wrapper button{  
-  position: relative;
-  border-radius: 3px;
-  background: #81BEF7;
-  cursor:pointer;
-  margin-left: 7px;
-  color: #fff;
-  font-weight: 700;
-  top: 1px;
-  display: inline-block;
-  height: 32px;  
-  border: 1px solid #999;
-}
+      section.chatroom {
+        border-radius: 5px;
+        background: #fff;
+        height: 350px;
+        border: 1px solid #999;
+        box-shadow: inset 0px 0px 6px -2px rgba(0, 0, 0, 0.3);
+        overflow: auto;
+      }
 
-section.chatroom {
-  border-radius: 5px;
-  background: #fff;
-  height: 350px;
-    border: 1px solid #999  ; 
-    box-shadow: inset 0px 0px 6px -2px rgba(0,0,0,0.3);
-    overflow: auto;
-}
+      .chatroom .element {
+        width: 100%;
+        padding: 10px;
+      }
+      .chatroom .element.left {
+        text-align: left;
+      }
 
-.chatroom .element{
-  width: 100%;
-  padding: 10px;
-}
-.chatroom .element.left{
-  text-align: left;
-} 
+      .chatroom .element.left div {
+        color: #333;
+        background: #eee;
+      }
 
-.chatroom .element.left div{      
-  color: #333;
-  background: #eee;
-}
+      .chatroom .element.right div {
+        color: #333;
+        background: #81daf5;
+      }
 
-.chatroom .element.right div{      
-  color: #333;
-  background: #81DAF5;
-}
+      .chatroom .element.right {
+        text-align: right;
+      }
 
-.chatroom .element.right{
-  text-align: right;
-}
+      .chatroom .element div {
+        display: inline-block;
+        background: #ddd;
+        width: 70%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
 
-.chatroom .element div{
-  display: inline-block;
-  background: #ddd;
-  width: 70%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
+      section#input_zone {
+        text-align: left;
+        padding: 10px 0px;
+        position: relative;
+      }
 
-section#input_zone { 
-  text-align: left;
-  padding: 10px 0px; 
-    position: relative;
-}
- 
+      input#username {
+        width: 70%;
+        font-family: 'Open Sans', sans-serif;
+        box-shadow: inset 0px 0px 6px -3px rgba(0, 0, 0, 0.3);
+      }
 
-input#username {
-  width: 70%;
-    font-family: 'Open Sans', sans-serif;
-    box-shadow: inset 0px 0px 6px -3px rgba(0,0,0,0.3);
-}
+      textarea.message {
+        display: inline-block;
+        box-shadow: inset 0px 0px 6px -2px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        border: 1px solid #999;
+        padding: 10px 15px;
+        font-size: 12px;
+        width: calc(100% - 75px);
+        height: 100px;
+        font-family: 'Open Sans', sans-serif;
+      }
 
-textarea.message {
-    display: inline-block;
-    box-shadow: inset 0px 0px 6px -2px rgba(0,0,0,0.3);
-    border-radius: 5px;
-    border: 1px solid #999;
-    padding: 10px 15px;
-    font-size: 12px;
-    width: calc(100% - 75px);
-    height: 100px;
-    font-family: 'Open Sans', sans-serif;
-}
+      button.send_message {
+        position: absolute;
+        top: 10px;
+        right: 0px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 3px;
+        background: #81bef7;
+        cursor: pointer;
+        color: #fff;
+        font-weight: 700;
+        display: inline-block;
+        height: 32px;
+        border: 1px solid #999;
+      }
+    </style>
+    <title>Client</title>
+  </head>
 
-button.send_message { 
-  position: absolute;
-  top: 10px;
-  right: 0px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-radius: 3px;
-  background: #81BEF7;
-  cursor:pointer;
-  color: #fff;
-  font-weight: 700; 
-  display: inline-block;
-  height: 32px;  
-  border: 1px solid #999;
-}
- 
-  </style>
-  <title>Client</title>
-</head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <section>
+          <div id="change_username" class="box_wrapper">
+            <input id="username" type="text" placeholder="Change Username" />
+            <button id="send_username" type="button">Change</button>
+          </div>
+          <div class="box_wrapper text">Client</div>
+          <p id="listUser">List User</p>
+        </section>
+        <section id="chatroomToOperator" class="chatroom"></section>
 
-<body>
-
-  <div class="container">
-    <div class="wrapper">
-      <section>
-        <div id="change_username3" class="box_wrapper">
-          <input id="username3" type="text" placeholder="Change Username" />
-          <button id="send_username3" type="button">Change</button>
-        </div>
-        <div class="box_wrapper text">
-          Client
-        </div>
-      </section>
-      <section id="chatroom3" class="chatroom">
-      </section>
-
-      <section id="input_zone">
-        <textarea id="message3" class="message"></textarea>
-        <button id="send_message3" class="send_message" type="button">Send</button>
-      </section>
+        <section id="input_zone">
+          <textarea id="messageToOperator" class="message"></textarea>
+          <button id="sendToOperator" class="send_message" type="button">
+            Send
+          </button>
+        </section>
+      </div>
     </div>
-  </div>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script>
-    $(function () {
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      $(function() {
+        // Create Client Socket
+        var socket = io.connect();
 
-      // Create Client Socket
-      var socket = io.connect()
+        // Fire at First Connection
+        socket.on('connect', () => {
+          console.log('ON CONNECT EVENT!');
+        });
 
-      // Fire at First Connection
-      socket.on('connect', () => {
-        console.log('ON CONNECT EVENT!')
+        //Emit a username
+        $('#send_username').click(function() {
+          socket.emit('change_username', { username: $('#username').val() });
+          alert('Username changed to! ' + $('#username').val());
+        });
+
+        var messageToOperator = $('#messageToOperator');
+        var sendToOperator = $('#sendToOperator');
+        var chatroomToOperator = $('#chatroomToOperator');
+
+        //Emit message
+        sendToOperator.click(function() {
+          socket.emit('operator', { message: messageToOperator.val() });
+          chatroomToOperator.append(
+            "<section class='element left'><div>" +
+              'You ' +
+              ': ' +
+              messageToOperator.val() +
+              '</div> </section>'
+          );
+          messageToOperator.val('');
+          console.log('Send Message Success!');
+        });
+
+        //Listen on new_message
+        socket.on('client', data => {
+          messageToOperator.val('');
+          chatroomToOperator.append(
+            "<section class='element right'><div>" +
+              data.username +
+              ': ' +
+              data.message +
+              '</div> </section>'
+          );
+        });
+
+        socket.on('getSocketID', socket => {
+          $('#listUser').text(`Your ID ${socket.id}`);
+        });
       });
-
-      var message3 = $("#message3")
-      var send_message3 = $("#send_message3")
-      var chatroom3 = $("#chatroom3")
-
-      //Emit message
-      send_message3.click(function () {
-        socket.emit('operator', { message: message3.val() })
-        chatroom3.append("<section class='element left'><div>" + 'You ' + ": " + message3.val() + "</div> </section>")
-        message3.val('');
-        console.log('Send Message Success!')
-      })
-
-      //Listen on new_message
-      socket.on("client", (data) => {
-        message3.val('');
-        chatroom3.append("<section class='element right'><div>" + data.username + ": " + data.message + "</div> </section>")
-      })
-
-
-    });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

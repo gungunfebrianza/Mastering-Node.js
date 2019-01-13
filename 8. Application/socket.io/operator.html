@@ -1,404 +1,473 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
+    <link
+      href="http://fonts.googleapis.com/css?family=Comfortaa"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/bootstrap.min.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-<head>
-  <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
-  <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/bootstrap.min.css">
-  <style>
-    * {
-    box-sizing: border-box;
-}
+      html {
+        height: 100%;
+      }
 
-html {
-    height: 100%;
-}
+      body {
+        margin: 0px;
+        height: 100%;
+        padding: 30px 0px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 12px;
+      }
 
-body {
-    margin: 0px;
-    height: 100%;
-    padding: 30px 0px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-}
+      header {
+        text-align: center;
+      }
 
-header {
-    text-align: center;
-}
+      h1 {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0px;
+      }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0px;
-}
+      div#change_username,
+      section#input_zone {
+      }
 
-div#change_username, section#input_zone {
-    
-}
+      .wrapper {
+        display: inline-block;
+        width: 30%;
+        box-shadow: 1px 2px 0px 0px #ddd;
+        margin-left: 30px;
+        padding: 20px;
+        background: #f7f7f7;
+        border-radius: 10px;
+      }
 
-.wrapper{ 
-  display: inline-block;
-  width: 30%;
-  box-shadow: 1px 2px 0px 0px #ddd;
-  margin-left: 30px;
-  padding: 20px;
-  background: #f7f7f7;
-  border-radius: 10px;
-}
+      div.box_wrapper {
+        width: 100%;
+        display: inline-block;
+        padding-bottom: 20px;
+        padding-top: 20px;
+      }
 
+      div.text {
+        width: 29%;
+        text-align: right;
+      }
 
-div.box_wrapper {
-  width: 100%; 
-    display: inline-block; 
-    padding-bottom: 20px;
-    padding-top: 20px;
-}
+      .box_wrapper input {
+        padding: 7px 15px;
+        height: 32px;
+        border: 1px solid #999;
+        border-radius: 3px;
+      }
 
-div.text{ 
-  width: 29%;
-  text-align: right;
-}
+      .box_wrapper button {
+        position: relative;
+        border-radius: 3px;
+        background: #81bef7;
+        cursor: pointer;
+        margin-left: 7px;
+        color: #fff;
+        font-weight: 700;
+        top: 1px;
+        display: inline-block;
+        height: 32px;
+        border: 1px solid #999;
+      }
 
-.box_wrapper input{
-  padding: 7px 15px;
-  height: 32px;
-  border: 1px solid #999;
-  border-radius: 3px;
-}
+      section.chatroom {
+        border-radius: 5px;
+        background: #fff;
+        height: 350px;
+        border: 1px solid #999;
+        box-shadow: inset 0px 0px 6px -2px rgba(0, 0, 0, 0.3);
+        overflow: auto;
+      }
 
-.box_wrapper button{  
-  position: relative;
-  border-radius: 3px;
-  background: #81BEF7;
-  cursor:pointer;
-  margin-left: 7px;
-  color: #fff;
-  font-weight: 700;
-  top: 1px;
-  display: inline-block;
-  height: 32px;  
-  border: 1px solid #999;
-}
+      .chatroom .element {
+        width: 100%;
+        padding: 10px;
+      }
+      .chatroom .element.left {
+        text-align: left;
+      }
 
-section.chatroom {
-  border-radius: 5px;
-  background: #fff;
-  height: 350px;
-    border: 1px solid #999  ; 
-    box-shadow: inset 0px 0px 6px -2px rgba(0,0,0,0.3);
-    overflow: auto;
-}
+      .chatroom .element.left div {
+        color: #333;
+        background: #eee;
+      }
 
-.chatroom .element{
-  width: 100%;
-  padding: 10px;
-}
-.chatroom .element.left{
-  text-align: left;
-} 
+      .chatroom .element.right div {
+        color: #333;
+        background: #81daf5;
+      }
 
-.chatroom .element.left div{      
-  color: #333;
-  background: #eee;
-}
+      .chatroom .element.right {
+        text-align: right;
+      }
 
-.chatroom .element.right div{      
-  color: #333;
-  background: #81DAF5;
-}
+      .chatroom .element div {
+        display: inline-block;
+        background: #ddd;
+        width: 70%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
 
-.chatroom .element.right{
-  text-align: right;
-}
+      section#input_zone {
+        text-align: left;
+        padding: 10px 0px;
+        position: relative;
+      }
 
-.chatroom .element div{
-  display: inline-block;
-  background: #ddd;
-  width: 70%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
+      input#username {
+        width: 70%;
+        font-family: 'Open Sans', sans-serif;
+        box-shadow: inset 0px 0px 6px -3px rgba(0, 0, 0, 0.3);
+      }
 
-section#input_zone { 
-  text-align: left;
-  padding: 10px 0px; 
-    position: relative;
-}
- 
+      textarea.message {
+        display: inline-block;
+        box-shadow: inset 0px 0px 6px -2px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        border: 1px solid #999;
+        padding: 10px 15px;
+        font-size: 12px;
+        width: calc(100% - 75px);
+        height: 100px;
+        font-family: 'Open Sans', sans-serif;
+      }
 
-input#username {
-  width: 70%;
-    font-family: 'Open Sans', sans-serif;
-    box-shadow: inset 0px 0px 6px -3px rgba(0,0,0,0.3);
-}
+      button.send_message {
+        position: absolute;
+        top: 10px;
+        right: 0px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 3px;
+        background: #81bef7;
+        cursor: pointer;
+        color: #fff;
+        font-weight: 700;
+        display: inline-block;
+        height: 32px;
+        border: 1px solid #999;
+      }
 
-textarea.message {
-    display: inline-block;
-    box-shadow: inset 0px 0px 6px -2px rgba(0,0,0,0.3);
-    border-radius: 5px;
-    border: 1px solid #999;
-    padding: 10px 15px;
-    font-size: 12px;
-    width: calc(100% - 75px);
-    height: 100px;
-    font-family: 'Open Sans', sans-serif;
-}
+      .dropbtn {
+        background-color: #3498db;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+      }
 
-button.send_message { 
-  position: absolute;
-  top: 10px;
-  right: 0px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-radius: 3px;
-  background: #81BEF7;
-  cursor:pointer;
-  color: #fff;
-  font-weight: 700; 
-  display: inline-block;
-  height: 32px;  
-  border: 1px solid #999;
-}
- 
-  .dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
+      .dropbtn:hover,
+      .dropbtn:focus {
+        background-color: #2980b9;
+      }
 
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-}
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
 
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
+      .dropdown a:hover {
+        background-color: #ddd;
+      }
 
-.dropdown a:hover {background-color: #ddd;}
+      .show {
+        display: block;
+      }
+    </style>
+    <title>Operator</title>
+  </head>
 
-.show {display: block;}
-  </style>
-  <title>Operator</title>
-</head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="wrapper">
+          <section>
+            <div class="list-group">
+              <a
+                href="#"
+                class="list-group-item list-group-item-action active bg-success"
+              >
+                List Inbox
+              </a>
+              <a
+                href="#"
+                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                >Inbox 1<span class="badge badge-danger badge-pill">4</span></a
+              >
+            </div>
+            <br /><br /><br />
+            <div class="list-group">
+              <a
+                href="#"
+                id="listUser"
+                class="list-group-item list-group-item-action active"
+              >
+                List User
+              </a>
+            </div>
+          </section>
+        </div>
 
-<body>
+        <div class="wrapper">
+          <section>
+            <div id="change_username" class="box_wrapper">
+              <p>Operator</p>
+              <input id="username" type="text" placeholder="Change Username" />
+              <button id="send_username" type="button">Change</button>
+            </div>
+            <p id="serverTime">-</p>
+          </section>
+          <section id="chatroomToClient" class="chatroom"></section>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="wrapper">
-        <section>
-          <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active bg-success">
-              List Inbox
-            </a>
-            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">Inbox
-              1<span class="badge badge-danger badge-pill">4</span></a>
-          </div>
-          <br><br><br>
-          <div class="list-group">
-            <a href="#" id="listUser" class="list-group-item list-group-item-action active">
-              List User
-            </a>
-          </div>
-        </section>
+          <section id="input_zone">
+            <textarea id="messageToClient" class="message"></textarea>
+            <button id="sendToClient" class="send_message" type="button">
+              Send
+            </button>
+          </section>
+        </div>
+
+        <div class="wrapper">
+          <section id="chatRoomPrivateMessage" class="chatroom"></section>
+          <section>
+            <div class="box_wrapper">
+              <input id="socketID" type="text" placeholder="SocketID " />
+            </div>
+          </section>
+          <section id="input_zone">
+            <textarea id="privateMessageContent" class="message"></textarea>
+            <button id="sendPrivateMessage" class="send_message" type="button">
+              Send
+            </button>
+          </section>
+        </div>
       </div>
 
+      <br /><br /><br />
 
-      <div class="wrapper">
-        <section>
-          <div id="change_username" class="box_wrapper">
-            <input id="username" type="text" placeholder="Change Username" />
-            <button id="send_username" type="button">Change</button>
-          </div>
-          <p id="serverTime">
-            -
-          </p>
-        </section>
-        <section id="chatroom2" class="chatroom">
-        </section>
+      <div class="row">
+        <div class="wrapper">
+          <section>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >Group Room</label
+                >
+              </div>
+              <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                <option value="1">Room 1</option>
+              </select>
+            </div>
+          </section>
+          <section id="chatroom2" class="chatroom"></section>
+          <section id="input_zone">
+            <textarea id="message2" class="message"></textarea>
+            <button id="send_message2" class="send_message" type="button">
+              Send
+            </button>
+          </section>
+        </div>
 
-        <section id="input_zone">
-          <textarea id="message2" class="message"></textarea>
-          <button id="send_message2" class="send_message" type="button">Send</button>
-        </section>
-      </div>
+        <div class="wrapper">
+          <section>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >Group Room 1</label
+                >
+              </div>
+              <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                <option value="1">Room 1</option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >Group Room 2</label
+                >
+              </div>
+              <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                <option value="1">Room 1</option>
+              </select>
+            </div>
+          </section>
+          <section id="chatroom2" class="chatroom"></section>
+          <section id="input_zone">
+            <textarea id="message2" class="message"></textarea>
+            <button id="send_message2" class="send_message" type="button">
+              Send
+            </button>
+          </section>
+        </div>
 
-
-      <div class="wrapper">
-        <section id="privateMessage" class="chatroom">
-
-        </section>
-        <section>
-          <div class="box_wrapper">
-            <input id="socketID" type="text" placeholder="SocketID " />
-          </div>
-        </section>
-        <section id="input_zone">
-          <textarea id="privateMessageContent" class="message"></textarea>
-          <button id="sendPrivateMessage" class="send_message" type="button">Send</button>
-        </section>
+        <div class="wrapper">
+          <section>
+            <div id="change_username2" class="box_wrapper">
+              <input id="username2" type="text" placeholder="Change Username" />
+              <button id="send_username2" type="button">Change</button>
+            </div>
+          </section>
+          <section id="chatroom2" class="chatroom"></section>
+          <section id="input_zone">
+            <textarea id="message2" class="message"></textarea>
+            <button id="send_message2" class="send_message" type="button">
+              Send
+            </button>
+          </section>
+        </div>
       </div>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      $(function() {
+        // Create Client Socket
+        var socket = io.connect();
 
-    <br><br><br>
+        // Fire at First Connection
+        socket.on('connect', () => {
+          console.log('ON CONNECT EVENT!');
+        });
 
-    <div class="row">
-      <div class="wrapper">
-        <section>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">Group Room</label>
-            </div>
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected>Choose...</option>
-              <option value="1">Room 1</option>
-            </select>
-          </div>
-        </section>
-        <section id="chatroom2" class="chatroom">
-        </section>
-        <section id="input_zone">
-          <textarea id="message2" class="message"></textarea>
-          <button id="send_message2" class="send_message" type="button">Send</button>
-        </section>
-      </div>
+        //Emit a username
+        $('#send_username').click(function() {
+          socket.emit('change_username', { username: $('#username').val() });
+          alert('Username changed to! ' + $('#username').val());
+        });
 
-      <div class="wrapper">
-        <section>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">Group Room 1</label>
-            </div>
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected>Choose...</option>
-              <option value="1">Room 1</option>
-            </select>
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">Group Room 2</label>
-            </div>
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected>Choose...</option>
-              <option value="1">Room 1</option>
-            </select>
-          </div>
-        </section>
-        <section id="chatroom2" class="chatroom">
-        </section>
-        <section id="input_zone">
-          <textarea id="message2" class="message"></textarea>
-          <button id="send_message2" class="send_message" type="button">Send</button>
-        </section>
-      </div>
+        socket.on('serverTime', function(data) {
+          var time = new Date(data.time);
+          $('#serverTime').text(
+            time.getMonth() +
+              '\/' +
+              time.getDate() +
+              '\/' +
+              time.getFullYear() +
+              ' ' +
+              time.getHours() +
+              ':' +
+              time.getMinutes() +
+              ':' +
+              time.getSeconds()
+          );
+        });
 
-      <div class="wrapper">
-        <section>
-          <div id="change_username2" class="box_wrapper">
-            <input id="username2" type="text" placeholder="Change Username" />
-            <button id="send_username2" type="button">Change</button>
-          </div>
-        </section>
-        <section id="chatroom2" class="chatroom">
-        </section>
-        <section id="input_zone">
-          <textarea id="message2" class="message"></textarea>
-          <button id="send_message2" class="send_message" type="button">Send</button>
-        </section>
-      </div>
-    </div>
+        var messageToClient = $('#messageToClient');
+        var sendToClient = $('#sendToClient');
+        var chatroomToClient = $('#chatroomToClient');
 
+        sendToClient.click(function() {
+          socket.emit('client', { message: messageToClient.val() });
+          chatroomToClient.append(
+            "<section class='element left'><div>" +
+              'You' +
+              ': ' +
+              messageToClient.val() +
+              '</div> </section>'
+          );
+          messageToClient.val('');
+          console.log('Send Message Success!');
+        });
 
-  </div>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script>
-    $(function () {
+        socket.on('operator', data => {
+          messageToClient.val('');
+          chatroomToClient.append(
+            "<section class='element right'><div>" +
+              data.username +
+              ': ' +
+              data.message +
+              '</div> </section>'
+          );
+        });
 
-      // Create Client Socket
-      var socket = io.connect()
+        var socketID = $('#socketID');
+        var privateMessageContent = $('#privateMessageContent');
+        var sendPrivateMessage = $('#sendPrivateMessage');
+        var chatRoomPrivateMessage = $('#chatRoomPrivateMessage');
+        sendPrivateMessage.click(function() {
+          socket.emit('linePrivateMessage', {
+            message: privateMessageContent.val(),
+            socketid: socketID.val()
+          });
+          chatRoomPrivateMessage.append(
+            "<section class='element left'><div>" +
+              'You' +
+              ': ' +
+              privateMessageContent.val() +
+              '</div> </section>'
+          );
+          privateMessageContent.val('');
+          console.log('Send Message Success!');
+        });
 
-      // Fire at First Connection
-      socket.on('connect', () => {
-        console.log('ON CONNECT EVENT!')
+        socket.on('linePrivateMessage', data => {
+          privateMessageContent.val('');
+          chatRoomPrivateMessage.append(
+            "<section class='element right'><div>" +
+              data.username +
+              ': ' +
+              data.message +
+              '</div> </section>'
+          );
+        });
+
+        socket.on('getSocketID', socket => {
+          $('#listUser').text(`List User - Your ID ${socket.id}`);
+        });
+
+        socket.on('recordUser', user => {
+          $('#listUser').after(
+            `<a href="#" id="${
+              user.id
+            }" onmouseover="hoverSocket($(this).attr('id'))" onmouseout="noSocketHover()" class="list-group-item list-group-item-action">Connected With ID : ${
+              user.id
+            }</a>`
+          );
+        });
+
+        socket.on('removeUser', function(id) {
+          $('#' + id).remove();
+        });
       });
 
-      socket.on('serverTime', function (data) {
-        var time = new Date(data.time);
-        $('#serverTime').text(
-          time.getMonth() + '\/' + time.getDate() + '\/' + time.getFullYear() + ' ' +
-          time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds());
-      });
-
-      var message2 = $("#message2")
-      var send_message2 = $("#send_message2")
-      var chatroom2 = $("#chatroom2")
-
-      //Emit message
-      send_message2.click(function () {
-        socket.emit('client', { message: message2.val() })
-        chatroom2.append("<section class='element left'><div>" + 'You' + ": " + message2.val() + "</div> </section>")
-        message2.val('');
-        console.log('Send Message Success!')
-      })
-
-      //Listen on new_message
-      socket.on("operator", (data) => {
-        message2.val('');
-        chatroom2.append("<section class='element right'><div>" + data.username + ": " + data.message + "</div> </section>")
-      })
-
-
-      socket.on('getSocketID', (socket) => {
-        $('#listUser').text(`List User - Your ID ${socket.id}`);
-      });
-
-      socket.on('recordUser', (user) => {
-        $('#listUser').after(`<a href="#" id="${user.id}" onmouseover="hoverSocket($(this).attr('id'))" onmouseout="noSocketHover()" class="list-group-item list-group-item-action">Connected With ID : ${user.id}</a>`);
-      });
-
-      //Emit a username
-      $("#send_username").click(function () {
-        socket.emit('change_username', { username: $('#username').val() })
-        alert('Username changed!')
-      })
-
-      socket.on('removeUser', function (id) {
-        $('#' + id).remove();
-      });
-
-    });
-
-    function hoverSocket(x) {
-      $('#socketID').val(x)
-    }
-    function noSocketHover() {
-      $('#socketID').val('')
-    }
-
-  </script>
-
-</body>
-
+      function hoverSocket(x) {
+        $('#socketID').val(x);
+      }
+      function noSocketHover() {}
+    </script>
+  </body>
 </html>

@@ -12,7 +12,9 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "mongoose": "^5.3.7",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "socketio-auth": "^0.1.1"
   }
 }

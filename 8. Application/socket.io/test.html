@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font: 13px Helvetica, Arial;
+      }
+
+      form {
+        background: #000;
+        padding: 3px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+
+      form input {
+        border: 0;
+        padding: 10px;
+        width: 90%;
+        margin-right: 0.5%;
+      }
+
+      form button {
+        width: 9%;
+        background: rgb(130, 224, 255);
+        border: none;
+        padding: 10px;
+      }
+
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      #messages li {
+        padding: 5px 10px;
+      }
+
+      #messages li:nth-child(odd) {
+        background: #eee;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul id="messages"></ul>
+    <p>
+      <label for="status">Status: </label>
+      <input
+        type="text"
+        id="status"
+        name="status"
+        value="Disconnected"
+        readonly="readonly"
+        style="width: 300px;"
+      />
+    </p>
+    <p>
+      <label for="token">My Token: </label>
+      <input type="text" id="token" name="token" value="secret token" />
+    </p>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <button id="disconnect">Disconnect</button>
+    <button id="reconnect">Reconnect</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <script>
+      const socketDokterUmum = 'http://localhost:9000/dokter-umum'; //Follow Namespace
+      let error = null;
+      $(function() {
+        const socket = io(socketDokterUmum, {
+          timeout: 20000,
+          forceNew: false,
+          upgrade: true
+        });
+
+        socket.on('connect', () => {
+          console.log('connected at start!');
+          socket.id = 'Gun Gun';
+          console.log('Socket ID ' + socket.id);
+          console.log('Is Socket Connected? ' + socket.connected);
+          console.log('Is Socket disonnected? ' + socket.disconnected);
+        });
+
+        socket.on('disconnect', () => {
+          console.log('disconnected!');
+        });
+
+        socket.on('ping', () => {
+          console.log('Ping!'); //Fired when a ping packet is written out to the server.
+        });
+
+        socket.on('pong', ms => {
+          console.log(`Pong ! ${ms}`); //Fired when a pong is received from the server.
+        });
+
+        socket.on('reconnect’', attempt => {
+          console.log(attempt); //(Number) reconnection attempt number
+          alert('reconnect’!');
+        });
+
+        // Reconnect Failed
+        socket.on('reconnect_failed', () => {
+          //Fired upon a reconnection attempt error.
+          alert('reconnect_failed!');
+        });
+
+        // Reconnect Error
+        socket.on('reconnect_error', error => {
+          console.log(error); //(Object) error object
+          //Fired upon a reconnection attempt error.
+          alert('reconnect_error!');
+
+        });
+
+        // Connection Error
+        socket.on('connect_error', error => {
+          //Fired upon a connection error.
+          alert('Connected Error!');
+        });
+
+        // Connection Timeout
+        socket.on('connect_timeout', timeout => {
+          //Fired upon a connection timeout.
+          alert('Connected Timeout!');
+        });
+
+        socket.on('error', error => {
+          console.log(error); //(Object) error object
+          // Fired when an error occurs.
+          alert(error);
+        });
+
+        $('#disconnect').click(() => {
+          socket.close();
+          console.log('Is Socket disonnected? ' + socket.disconnected);
+        });
+
+        function socket_connect() {
+          console.log('func socket_connect');
+          socket = io.connect();
+          console.log('Is Socket Connected? ' + socket.connected);
+        }
+
+        $('#reconnect').click(() => {
+          socket.open();
+        });
+
+        socket.on('chat message', function(msg) {
+          console.log(socket.id);
+          $('#messages').append($('<li>').text(msg + socket.id));
+        });
+
+        $('form').submit(function() {
+          // sending to all connected clients
+          socket.emit('chat message', $('#m').val());
+          $('#m').val('');
+
+          socket.emit('trigger event', { my: 'Ujang Rian' });
+
+          return false;
+        });
+      });
+    </script>
+  </body>
+</html>

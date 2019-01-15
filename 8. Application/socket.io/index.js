@@ -30,45 +30,65 @@ app.use(
     saveUninitialized: true
   })
 );
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // 1. Setup Public Folder
 app.use(express.static(__dirname + '/public'));
 
-// 2.
+// 2. Serve Operator Page
 app.get('/operator', function(req, res) {
   res.sendFile(__dirname + '/operator.html');
 });
 
+// 3. Serve Client Page
 app.get('/client', function(req, res) {
   res.sendFile(__dirname + '/client.html');
 });
 
-// We will keep a record of all connected sockets
+// 4. We will keep a record of all connected sockets
 var sockets = {};
 var ySID = '';
 
-// 1. Detect Socket
+// 5. Detect Socket
 io.on('connection', function(clientsSocket) {
+  // 6. Store Detected Users in Socket Object
   sockets[clientsSocket.id] = clientsSocket;
+
+  // 7. Sending Socket ID to Users
   clientsSocket.emit('getSocketID', { id: clientsSocket.id });
   ySID = clientsSocket.id;
 
-  // 2. Sending to All Connected Client
+  // 8. Sending to All Connected Client
   clientsSocket.broadcast.emit('recordUser', { id: clientsSocket.id });
 
-  // 3. Emit the connected users when a new socket connects
+  // 9. Emit the connected users when a new socket connects
   for (var i in sockets) {
     if (sockets[i].id != ySID) {
       clientsSocket.emit('recordUser', { id: sockets[i].id });
     }
   }
 
-  // 4. Change Username
+  // 10. Change Username
   clientsSocket.on('change_username', data => {
     clientsSocket.username = data.username;
     console.log(`${ySID} Change Username to ${data.username}`);
+  });
+
+  clientsSocket.on('room', room => {
+    console.log(`${clientsSocket.id} Join Room ${room}`);
+    clientsSocket.join(room);
+  });
+
+  clientsSocket.on('lineRoomMessage', data => {
+    console.log('message: ' + data.message);
+    console.log('from : ' + ySID);
+    console.log('to room : ' + data.idroom);
+    clientsSocket.to(`${data.idroom}`).emit('lineRoomMessage', {
+      message: data.message,
+      username: clientsSocket.username
+    });
   });
 
   clientsSocket.on('linePrivateMessage', data => {

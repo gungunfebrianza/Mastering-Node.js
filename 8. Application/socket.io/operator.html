@@ -285,16 +285,16 @@
                   >Group Room</label
                 >
               </div>
-              <select class="custom-select" id="inputGroupSelect01">
+              <select class="custom-select" id="join-single-room">
                 <option selected>Choose...</option>
                 <option value="1">Room 1</option>
               </select>
             </div>
           </section>
-          <section id="chatroom2" class="chatroom"></section>
+          <section id="chatroomRoom" class="chatroom"></section>
           <section id="input_zone">
-            <textarea id="message2" class="message"></textarea>
-            <button id="send_message2" class="send_message" type="button">
+            <textarea id="roomMessage" class="message"></textarea>
+            <button id="sendToRoom" class="send_message" type="button">
               Send
             </button>
           </section>
@@ -431,7 +431,6 @@
               '</div> </section>'
           );
           privateMessageContent.val('');
-          console.log('Send Message Success!');
         });
 
         socket.on('linePrivateMessage', data => {
@@ -443,6 +442,39 @@
               data.message +
               '</div> </section>'
           );
+        });
+
+        var roomMessage = $('#roomMessage');
+        var sendToRoom = $('#sendToRoom');
+        var chatroomRoom = $('#chatroomRoom');
+        sendToRoom.click(() => {
+          socket.emit('lineRoomMessage', {
+            message: roomMessage.val(),
+            idroom: '5c3e3820a2202d338c9d7c53'
+          });
+          chatroomRoom.append(
+            "<section class='element left'><div>" +
+              'You' +
+              ': ' +
+              roomMessage.val() +
+              '</div> </section>'
+          );
+          roomMessage.val('');
+        });
+
+        socket.on('lineRoomMessage', data => {
+          roomMessage.val('');
+          chatroomRoom.append(
+            "<section class='element right'><div>" +
+              data.username +
+              ': ' +
+              data.message +
+              '</div> </section>'
+          );
+        });
+
+        $('#join-single-room').change(function() {
+          socket.emit('room', '5c3e3820a2202d338c9d7c53');
         });
 
         socket.on('getSocketID', socket => {
@@ -467,7 +499,6 @@
       function hoverSocket(x) {
         $('#socketID').val(x);
       }
-      function noSocketHover() {}
     </script>
   </body>
 </html>

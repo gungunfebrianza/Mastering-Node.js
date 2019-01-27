@@ -44,3 +44,16 @@ console.log(AK47);
 console.log(AK47.shootTarget());
 console.log(AK47.shootTarget());
 console.log(AK47.shootTarget());
+
+function Car(type, speed, fuel) {
+  this.CarType = type;
+  this.CarSpeed = speed;
+  this.CarFuel = fuel;
+  this.StartTheCar = () => {
+    console.log('Car is on!');
+  };
+}
+
+var lambo = new Car('Lamborghini', 1600, 50);
+console.log(lambo);
+console.log(lambo.StartTheCar());

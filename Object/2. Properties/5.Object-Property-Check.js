@@ -9,3 +9,7 @@ var person = {
 
 console.log('language' in person);
 console.log('languages' in person);
+
+if ('languages' in person === false) {
+  console.log('Properties is not exist');
+}

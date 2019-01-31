@@ -17,7 +17,7 @@ io.of('/dokter-umum').on('connect', function(socketCustomerService) {
   });
 
   socketCustomerService.on('trigger event', function(data) {
-    console.log(`Socket DU - Trigget Activated ${data.my}`);
+    console.log(`Socket DU - Trigget Activated ${data.command}`);
   });
 });
 

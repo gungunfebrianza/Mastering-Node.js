@@ -78,7 +78,7 @@ io.on('connection', function(clientsSocket) {
 
   clientsSocket.on('room', room => {
     console.log(`${clientsSocket.id} Join Room ${room}`);
-    clientsSocket.join(room);
+    clientsSocket.join('room 1');
   });
 
   clientsSocket.on('lineRoomMessage', data => {

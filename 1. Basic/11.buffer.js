@@ -16,3 +16,10 @@ console.log(bufFromArrayBuffer);
 arrayBuffer[1] = 7001;
 // Prints: <Buffer 05 00 59 1b>
 console.log(bufFromArrayBuffer);
+
+const bufFromString = Buffer.from('¿Cómo está?');
+console.log(bufFromString.toString('utf8')); // ¿Cómo está?
+console.log(bufFromString.toString()); // ¿Cómo está?
+console.log(bufFromString.toString('ascii')); // B?CC3mo estC!?
+const bufFromHex = Buffer.from('c2bf43c3b36d6f20657374c3a13f', 'hex');
+console.log(bufFromHex.toString()); // ¿Cómo está?

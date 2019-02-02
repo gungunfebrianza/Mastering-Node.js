@@ -6,7 +6,7 @@ console.log(secret.base32); // Save this value to your DB for the user
 
 QRCode.toFile(
   './test.jpeg',
-  'Gun Gun Febrianza',
+  `Gun Gun Febrianza ${secret.base32}`,
   {
     type: 'image/jpeg',
     errorCorrectionLevel: 'H'

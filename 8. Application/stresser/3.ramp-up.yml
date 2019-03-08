@@ -1,19 +1,31 @@
 config:
   target: 'http://marketkoin.com'
+  # A ramp up followed by an constant arrival rate
+  # Ramp up arrival rate from 10 to 50 over 2 minutes, followed by 10 minutes at 50 arrivals per second.
   phases:
-    # We define first load phase,
-    # which will last 60 seconds with 25 new virtual users (arriving every second (on average).
-    - duration: 60
-      arrivalRate: 25
-      name: 'Constant Arrival Rate'
+    - duration: 120
+      arrivalRate: 10
+      rampTo: 50
+      name: 'Warm up the application'
+    - duration: 600
+      arrivalRate: 50
+      name: 'Sustained max load'
 scenarios:
   - flow:
       - get:
           url: '/'
-# •	Scenarios launched is the number of virtual users created in the preceding 10 seconds (or in total)
-# •	Scenarios completed is the number of virtual users that completed their scenarios in the preceding 10 seconds (or in the whole test).
-# •	Requests completed is the number of HTTP requests and responses or WebSocket messages sent
-# •	RPS sent is the average number of requests per second completed in the preceding 10 seconds (or throughout the test)
-# •	Request latency is in milliseconds, and p95 and p99 values are the 95th and 99th percentile values.
-# •	Codes provides the breakdown of HTTP response codes received.
+# Scenarios launched
+# is the number of virtual users created in the preceding 10 seconds (or in total)
+
+# Scenarios completed
+# is the number of virtual users that completed their scenarios in the preceding 10 seconds (or in the whole test).
+
+# Requests completed
+# is the number of HTTP requests and responses or WebSocket messages sent
+
+# RPS sent is
+# the average number of requests per second completed in the preceding 10 seconds (or throughout the test)
+
+# Request latency is in milliseconds, and p95 and p99 values are the 95th and 99th percentile values.
+# Codes provides the breakdown of HTTP response codes received.
 

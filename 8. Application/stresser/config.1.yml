@@ -1,0 +1,10 @@
+config:
+  target: 'http://marketkoin.com'
+  phases:
+    # We define first load phase, which will last 60 seconds with 25 new virtual users (arriving every second (on average).
+    - duration: 60
+      arrivalRate: 25
+scenarios:
+  - flow:
+      - get:
+          url: '/'

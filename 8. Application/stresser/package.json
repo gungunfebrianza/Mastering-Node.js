@@ -1,0 +1,11 @@
+{
+  "name": "stresser",
+  "version": "1.0.0",
+  "description": "Stresser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gun Gun Febrianza",
+  "license": "ISC"
+}

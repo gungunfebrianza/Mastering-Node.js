@@ -1,0 +1,38 @@
+# Choose an environment on the command line with the -e flag;
+# e.g. artillery run -e production 6.log.yml
+config:
+  target: 'http://marketkoin.com'
+  phases:
+    - duration: 10
+      arrivalRate: 1
+  environments:
+    production:
+      target: 'http://marketkoin.com'
+      phases:
+        - duration: 120
+          arrivalRate: 10
+    staging:
+      target: 'http://127.0.0.1:3000'
+      phases:
+        - duration: 1200
+          arrivalRate: 20
+scenarios:
+  - flow:
+      - get:
+          url: '/'
+          log: 'Current environment is set to: {{ $environment }}'
+# Scenarios launched
+# is the number of virtual users created in the preceding 10 seconds (or in total)
+
+# Scenarios completed
+# is the number of virtual users that completed their scenarios in the preceding 10 seconds (or in the whole test).
+
+# Requests completed
+# is the number of HTTP requests and responses or WebSocket messages sent
+
+# RPS sent is
+# the average number of requests per second completed in the preceding 10 seconds (or throughout the test)
+
+# Request latency is in milliseconds, and p95 and p99 values are the 95th and 99th percentile values.
+# Codes provides the breakdown of HTTP response codes received.
+

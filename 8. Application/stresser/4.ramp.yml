@@ -1,0 +1,16 @@
+# A ramp up followed by an constant arrival rate
+# Ramp up arrival rate from 10 to 50 over 2 minutes, followed by 10 minutes at 50 arrivals per second.
+config:
+  target: 'http://marketkoin.com'
+  phases:
+    - duration: 120
+      arrivalRate: 10
+      rampTo: 50
+      name: 'Warm up the application'
+    - duration: 600
+      arrivalRate: 50
+      name: 'Sustained max load'
+scenarios:
+  - flow:
+      - get:
+          url: '/'

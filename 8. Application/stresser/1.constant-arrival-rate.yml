@@ -1,11 +1,11 @@
 config:
   target: 'http://marketkoin.com'
   phases:
-    # Fixed count of arrivals
-    # Create 20 virtual users in 60 seconds (approximately one every 3 seconds):
+    # We define first load phase,
+    # which will last 60 seconds with 25 new virtual users (arriving every second (on average).
     - duration: 60
-      arrivalCount: 20
-      name: 'Fixed Count Arrival'
+      arrivalRate: 25
+      name: 'Constant Arrival Rate'
 scenarios:
   - flow:
       - get:

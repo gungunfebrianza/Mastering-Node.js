@@ -1,0 +1,9 @@
+config:
+  target: 'http://marketkoin.com'
+  # Pause for i minutes
+  phases:
+    - pause: 60
+scenarios:
+  - flow:
+      - get:
+          url: '/'

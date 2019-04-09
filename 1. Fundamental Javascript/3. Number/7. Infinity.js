@@ -15,3 +15,10 @@ while (myNumber != Infinity) {
 1.157920892373162e+77
 1.3407807929942597e+154
 Infinity */
+
+// Division by 0 (zero) also generates Infinity:
+var x = 2 / 0; // x will be Infinity
+var y = -2 / 0; // y will be -Infinity
+
+// Infinity is a number: typeof Infinity returns number.
+typeof Infinity; // returns "number"

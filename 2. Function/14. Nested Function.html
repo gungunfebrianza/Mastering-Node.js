@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Nested Function</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  function add() {
+    var counter = 0;
+
+    function plus() {
+      counter += 1;
+    }
+    plus();
+    return counter;
+  }
+  alert(add())
+</script>
+
+</html>

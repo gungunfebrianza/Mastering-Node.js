@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Function Parameter Function</title>
+</head>
+
+<body>
+  <h2>JavaScript Functions Parameter Function</h2>
+  <p>This example calls a function which performs a calculation, and returns the result:</p>
+  <p id="demo"></p>
+</body>
+<script>
+  function showMessage(from, text = test()) {
+    alert(from + ": " + text);
+  }
+
+  function test() {
+    return "St";
+  }
+  showMessage("Ann"); // Ann: no text given
+</script>
+
+</html>

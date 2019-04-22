@@ -17,3 +17,6 @@ var car = {
   speed: 900
 };
 console.log(car.type);
+
+car.owner = 'gun gun febrianza';
+console.log(car.owner);

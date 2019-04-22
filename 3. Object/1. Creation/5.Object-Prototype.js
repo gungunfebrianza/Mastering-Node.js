@@ -21,6 +21,6 @@ function Person(first, last, age, eyecolor) {
   this.eyeColor = eyecolor;
 }
 
-Person.prototype.nationality = "English";
-var myFather = new Person("John", "Doe", 50, "blue");
+Person.prototype.nationality = 'English';
+var myFather = new Person('Gun Gun', 'Febrianza', 29, 'Red Brown');
 console.log(myFather.nationality);

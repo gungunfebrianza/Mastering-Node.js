@@ -1,9 +1,8 @@
 var person = {
-  firstname: "John",
-  lastname: "Doe",
-  age: 50,
-  eyecolor: "blue"
+  firstname: 'Gun Gun',
+  lastname: 'Febrianza',
+  age: 27,
+  eyecolor: 'Red Brown'
 };
-person.nationality = "English";
-
+person.nationality = 'Indonesia';
 console.log(person);

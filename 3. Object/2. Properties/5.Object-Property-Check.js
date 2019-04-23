@@ -1,6 +1,6 @@
 var person = {
-  firstName: 'John',
-  lastName: 'Doe',
+  firstName: 'Gun Gun',
+  lastName: 'Febrianza',
   language: 'en',
   get lang() {
     return this.language;

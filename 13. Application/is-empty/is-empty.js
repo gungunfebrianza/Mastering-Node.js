@@ -12,4 +12,12 @@ console.log(isEmpty([])); //true
 console.log(isEmpty(null)); //true
 console.log(isEmpty(undefined)); //true
 
+console.log(!isEmpty('string')); //true
+console.log(!isEmpty(76)); //true
+console.log(!isEmpty('')); //false
+console.log(!isEmpty({})); //false
+console.log(!isEmpty([])); //false
+console.log(!isEmpty(null)); //false
+console.log(!isEmpty(undefined)); //false
+
 //KALO ADA LITERAL YA FALSE LAH! KAN ISEMPTY!!!

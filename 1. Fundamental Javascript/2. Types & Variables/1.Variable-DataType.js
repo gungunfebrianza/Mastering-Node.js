@@ -18,7 +18,7 @@ var logic = true;
 // The boolean type has only two values: true and false.
 
 let gun = {
-  nama: 'Gun Gun Febrianza'
+      nama: 'Gun Gun Febrianza'
 };
 /*All other types are called “primitive”, because their values can contain only a single thing (be it a string or a number or whatever).
       In contrast, objects are used to store collections of data and more complex entities*/

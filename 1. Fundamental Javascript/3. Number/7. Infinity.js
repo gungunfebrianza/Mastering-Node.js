@@ -16,9 +16,13 @@ while (myNumber != Infinity) {
 1.3407807929942597e+154
 Infinity */
 
-// Division by 0 (zero) also generates Infinity:
-var x = 2 / 0; // x will be Infinity
-var y = -2 / 0; // y will be -Infinity
+// Angka yg dibagi 0 (zero) memproduksi Infinity:
+var x = 2 / 0; // x memproduksi Infinity
+var y = -2 / 0; // y memproduksi -Infinity
+console.log(x);
+console.log(y);
+
+
 
 // Infinity is a number: typeof Infinity returns number.
 typeof Infinity; // returns "number"

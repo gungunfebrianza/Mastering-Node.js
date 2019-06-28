@@ -1,8 +1,8 @@
-function showMessage(from, text = test()) {
+function tampilkanPesan(from, text = test()) {
   console.log(from + ': ' + text);
 }
 
 function test() {
-  return 'St';
+  return 'Hello';
 }
-showMessage('Ann'); // Ann: no text given
+tampilkanPesan('Racheysa'); // Ann: no text given

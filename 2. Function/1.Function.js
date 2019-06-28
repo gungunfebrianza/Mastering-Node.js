@@ -1,3 +1,4 @@
 function sayHello() {
-  console.log('Hello there!');
+  console.log('Hello!');
+  console.log('Gun Gun Febrianza!');
 }

@@ -1,7 +1,11 @@
-function showMessage(from, text) {
+function tampilkanPesan(from, text) {
   // arguments: from, text
-  alert(from + ': ' + text);
+  console.log(from + ': ' + text);
 }
 
-showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
-showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+tampilkanPesan('Kaiz', 'Hello! Racheysa!'); 
+tampilkanPesan('Racheysa', "What's up? kaiz!"); 
+/* 
+Output
+Kaiz: Hello! Racheysa!
+Racheysa: What's up? kaiz! */

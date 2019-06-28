@@ -1,6 +1,6 @@
-function showMessage() {
+function tampilkanPesan() {
   let message = "Hello, I'm JavaScript!"; // local
   console.log(message);
 }
-showMessage(); // Hello, I'm JavaScript!
-console.log(message); // <-- Error! The variable is local to the function
+tampilkanPesan(); // Hello, I'm JavaScript!
+console.log(message); // <-- Error! 

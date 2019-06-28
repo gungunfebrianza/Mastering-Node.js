@@ -1,8 +1,8 @@
-let userName = 'John';
+let userName = 'Gun Gun Febrianza';
 
-function showMessage() {
+function tampilkanPesan() {
   let message = 'Hello, ' + userName;
   console.log(message);
 }
 
-showMessage(); // Hello, my name is John
+tampilkanPesan(); // Hello, Gun Gun Febrianza

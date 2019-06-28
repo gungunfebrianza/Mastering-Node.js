@@ -1,6 +1,6 @@
 function tampilkanPesan() {
-  let message = "Hello, I'm JavaScript!"; // local
+  let message = "Hello, I'm Message Variable Inside Function"; // local
   console.log(message);
 }
 tampilkanPesan(); // Hello, I'm JavaScript!
-console.log(message); // <-- Error! 
+console.log(message); // <-- Error! ReferenceError: message is not defined

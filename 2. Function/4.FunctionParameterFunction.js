@@ -5,4 +5,4 @@ function tampilkanPesan(from, text = test()) {
 function test() {
   return 'Hello';
 }
-tampilkanPesan('Racheysa'); // Ann: no text given
+tampilkanPesan('Racheysa');

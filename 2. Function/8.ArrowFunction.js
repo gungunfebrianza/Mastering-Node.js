@@ -1,6 +1,6 @@
 let sum = (a, b) => a + b;
 
-/* The arrow function is a shorter form of:
+/* setara dengan:
 
   let sum = function(a, b) {
   return a + b;

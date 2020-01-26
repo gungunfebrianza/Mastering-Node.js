@@ -11,7 +11,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}\\16. Data Structure\\stack.js"
+      "program": "${file}"
     }
   ]
 }

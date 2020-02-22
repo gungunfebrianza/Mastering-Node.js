@@ -7,9 +7,9 @@ var person = {
   }
 };
 
-console.log('language' in person);
-console.log('languages' in person);
+console.log('language' in person);// true
+console.log('languages' in person);// false
 
-if ('languages' in person === false) {
-  console.log('Properties is not exist');
-}
+  if ('languages' in person === false) {
+    console.log('Properties is not exist');
+  }

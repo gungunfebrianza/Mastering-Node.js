@@ -4,9 +4,9 @@ Getters and setters allow you to define Object Accessors (Computed Properties).
 This example uses a lang property to get the value of the language property.
 */
 var person = {
-  firstName: "John",
-  lastName: "Doe",
-  language: "en",
+  firstName: "Gun Gun",
+  lastName: "Febrianza",
+  language: "id",
   get lang() {
     return this.language;
   }

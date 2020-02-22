@@ -1,4 +1,4 @@
-var person = { fname: 'John', lname: 'Doe', age: 25 };
+var person = { fname: 'Gun GUn', lname: 'Febrianza', age: 28 };
 var x;
 for (x in person) {
   console.log(x);

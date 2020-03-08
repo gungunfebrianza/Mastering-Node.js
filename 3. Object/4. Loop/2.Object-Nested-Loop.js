@@ -1,8 +1,8 @@
 let routes = {
   getLevel1: {
-    getLevel2A: 'Get Level 2 A',
-    getLevel2B: 'Get Level 2 B',
-    getLevel2C: 'Get Level 2 C'
+    getLevel2A: 'Get Level 1 A',
+    getLevel2B: 'Get Level 1 B',
+    getLevel2C: 'Get Level 1 C'
   },
   postLevel1: {
     postLevel2A: 'Post Level 2 A',

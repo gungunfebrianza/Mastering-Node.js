@@ -2,14 +2,17 @@
 Creates a slice of array with n elements dropped from the beginning */
 var _ = require('lodash');
 
-_.drop([1, 2, 3]);
+console.log(_.drop([1, 2, 3]));
 // => [2, 3]
 
-_.drop([1, 2, 3], 2);
+console.log(_.drop([1, 2, 3], 2));
 // => [3]
 
-_.drop([1, 2, 3], 5);
+console.log(_.drop([1, 2, 3], 3));
 // => []
 
-_.drop([1, 2, 3], 0);
+console.log(_.drop([1, 2, 3], 15));
+// => []
+
+console.log(_.drop([1, 2, 3], 0));
 // => [1, 2, 3]

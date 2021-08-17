@@ -15,16 +15,16 @@ Returns
 var _ = require('lodash');
 
 var users = [
-  { user: 'barney', active: false },
-  { user: 'fred', active: false },
-  { user: 'pebbles', active: true },
-  { user: 'Gun', active: true }
+  { user: 'Gun', active: false },
+  { user: 'Maudy', active: false },
+  { user: 'Ayunda', active: true },
+  { user: 'Febrianza', active: true }
 ];
 const test = _.findIndex(users, function(o) {
-  return o.user === 'barney';
+  return o.user === 'Maudy';
 });
 console.log(test);
-// => 0
+// => 1
 
 const active = _.findIndex(users, function(o) {
   return o.active === true;

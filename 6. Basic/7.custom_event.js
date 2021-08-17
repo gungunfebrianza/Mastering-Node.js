@@ -7,6 +7,7 @@ emitter.on('newEvent', (message)=>{
 });
 
 emitter.emit('newEvent', 'Hello guys this is my event');
+emitter.emit('newEvent', "Hello Maudy!")
 
 // var EventEmitter = require("events").EventEmitter;
 //

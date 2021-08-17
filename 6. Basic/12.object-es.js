@@ -14,3 +14,4 @@ const accountService = {
 };
 
 console.log(accountService.getUrl()); // ready to be used
+console.log(getAccounts());

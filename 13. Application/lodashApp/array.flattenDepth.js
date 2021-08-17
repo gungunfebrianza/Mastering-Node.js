@@ -13,8 +13,8 @@ Returns
 var _ = require('lodash');
 var array = [1, [2, [3, [4]], 5]];
 
-_.flattenDepth(array, 1);
+console.log(_.flattenDepth(array, 1));
 // => [1, 2, [3, [4]], 5]
 
-_.flattenDepth(array, 2);
+console.log(_.flattenDepth(array, 2));
 // => [1, 2, 3, [4], 5]

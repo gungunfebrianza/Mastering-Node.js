@@ -15,13 +15,13 @@ Returns
 var _ = require('lodash');
 
 var users = [
-  { user: 'barney', active: false },
-  { user: 'fred', active: false },
-  { user: 'barney', active: true },
-  { user: 'Gun', active: true }
+  { user: 'Maudy', active: false },
+  { user: 'Gun', active: false },
+  { user: 'Maudy', active: true },
+  { user: 'Febrianza', active: true }
 ];
 const test = _.findLastIndex(users, function(o) {
-  return o.user === 'barney';
+  return o.user === 'Maudy';
 });
 console.log(test);
 // => 2

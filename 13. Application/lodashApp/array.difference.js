@@ -18,3 +18,5 @@ console.log(_.difference([5, 4, 3, 2, 1], [2, 3]));
 
 console.log(_.difference(['hello', 'sweety'], ['hello', 'honey']));
 // => [ 'sweety' ]
+
+console.log(_.difference([{name:'maudy', age:25}, {name:'ayunda', age:25}],[{name:'maudy', age:25}]));

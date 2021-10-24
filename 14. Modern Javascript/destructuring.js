@@ -1,9 +1,8 @@
-
 const person = {
-  firstName: 'Tom',
-  lastName: 'Cruise',
+  firstName: "Maudy",
+  lastName: "Ayunda",
   actor: true,
-  age: 54 //made up
+  age: 26, //made up
 };
 
 const { firstName, age } = person;

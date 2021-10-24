@@ -13,6 +13,7 @@ describe("Array", function () {
 var foo = "hello";
 
 describe("Expect String", function () {
+  this.timeout(5);
   it("should to be a string", function () {
     expect(foo).to.be.a("string");
   });

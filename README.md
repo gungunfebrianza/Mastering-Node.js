@@ -1,23 +1,23 @@
 # Mastering Node.js
 ## Author : Gun Gun Febrianza
 
-# Content Table
+# Table of Contents
 
-1. Fundamental Javascript
-   - Quick Start
-   - Types & Variables
-   - Number
-   - Assignment Operator
-   - Arithmetic Operator
-   - Logical Operator
-   - Conditional Operation
-   - Looping Operation
-2. Function
-3. Object
-   - Creation
-   - Properties
-   - Methods
-   - Loop
+1. [Fundamental Javascript](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/1.%20Fundamental%20Javascript)
+   - [Quick Start](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/1.%20Fundamental%20Javascript/1.%20Start)
+   - [Types & Variables](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/1.%20Fundamental%20Javascript/2.%20Types%20%26%20Variables)
+   - [Number](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/1.%20Fundamental%20Javascript/3.%20Number)
+   - [Assignment Operator](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/1.%20Fundamental%20Javascript/4.%20Assignment%20Operator)
+   - [Arithmetic Operator](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/1.%20Fundamental%20Javascript/5.%20Arithmetic%20Operator)
+   - [Logical Operator](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/1.%20Fundamental%20Javascript/6.%20Logical%20Operator)
+   - [Conditional Operation](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/1.%20Fundamental%20Javascript/7.%20Conditional%20Operation)
+   - [Looping Operation](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/1.%20Fundamental%20Javascript/8.%20Looping%20Operation)
+2. [Function](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/2.%20Function)
+3. [Object](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/3.%20Object)
+   - [Creation](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/3.%20Object/1.%20Creation)
+   - [Properties](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/3.%20Object/2.%20Properties)
+   - [Methods](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/3.%20Object/3.%20Methods)
+   - [Loop](https://github.com/gungunfebrianza/Mastering-Node.js/tree/master/3.%20Object/4.%20Loop)
 4. Object ES 5
 5. Native Object
    - Array Object
@@ -39,6 +39,7 @@
 15. Snippet
 16. Data Structure
     - Stack
+    - Queue
 17. Errors
 18. Debugging
 19. Testing

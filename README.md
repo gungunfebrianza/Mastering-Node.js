@@ -1,5 +1,5 @@
 # Mastering Node.js
-:books: GGF Open Source Society University. From Zero to Hero Mastering Node.js.
+## Author : Gun Gun Febrianza
 
 # Content Table
 
@@ -41,6 +41,7 @@
     - Stack
 17. Errors
 18. Debugging
+19. Testing
 
 
 ---------------------------------------------------------------------------------------------------------------------------------

@@ -19,4 +19,3 @@ newStr = str.replaceAll(pattern, function (match, offset, str) {
 console.log(newStr);
 
 //output : Maudya Ayunda Faza Cantik, MAUDYA AYUNDA FAZA Manis, maudya ayunda faza Pintar
-a

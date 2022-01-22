@@ -9,6 +9,6 @@
   "author": "Gun Gun Febrianza",
   "license": "ISC",
   "dependencies": {
-    "validator": "^10.8.0"
+    "validator": "^13.7.0"
   }
 }
